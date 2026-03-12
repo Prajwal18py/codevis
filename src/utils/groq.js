@@ -23,7 +23,7 @@ export function buildLCPrompt(problem, code, lang = "cpp") {
   const langLabel = lang === "python" ? "Python" : "C++";
   const codeBlock = lang === "python" ? "python" : "cpp";
   return `You are an expert DSA teacher explaining to a beginner. Analyze this LeetCode problem.
-Return ONLY valid JSON, no markdown, nothing outside the JSON.
+Return ONLY valid JSON, no markdown, nothing outside the JSON. All code fields must be plain text only — NO HTML tags, NO <span>, NO syntax highlighting markup.
 
 {
   "problem_name": "Two Sum",
@@ -102,7 +102,7 @@ export function buildOOPPrompt(code, lang = "cpp") {
     "method_overriding": {"used":true,  "where":"area() override in Circle",          "explanation":"Circle provides its own area() formula. The override keyword catches typos at compile time."}`;
 
   return `You are a ${langLabel} OOP teacher. Explain this code like Python Tutor — step by step, beginner-friendly.
-Return ONLY valid JSON, no markdown, nothing outside the JSON.
+Return ONLY valid JSON, no markdown, nothing outside the JSON. All code fields must be plain text only — NO HTML tags, NO <span>, NO syntax highlighting markup.
 
 {
   "summary": "what this code does in 1-2 sentences",
@@ -150,7 +150,7 @@ ${code}
 export function buildOptimizePrompt(problem, code, lang = "cpp") {
   const langLabel = lang === "python" ? "Python" : "C++";
   return `You are an expert DSA coach. The user gave you a brute force or suboptimal solution. Your job is to optimize it step by step.
-Return ONLY valid JSON, nothing outside it.
+Return ONLY valid JSON, nothing outside it. All code fields must be plain text only — NO HTML tags, NO <span>, NO syntax highlighting markup.
 
 {
   "original_complexity": {

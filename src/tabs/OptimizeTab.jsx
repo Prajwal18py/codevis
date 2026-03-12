@@ -7,6 +7,18 @@ import { useTheme } from "../utils/ThemeContext";
 import { callGroq, buildOptimizePrompt } from "../utils/groq";
 import { CodeBlock } from "../components/UI";
 
+// Strip AI-hallucinated HTML remnants like "kw"> from code strings
+function cleanCode(str) {
+  if (!str) return "";
+  return str
+    .replace(/<[^>]+>/g, "")
+    .replace(/"[a-zA-Z-]+">/g, "")
+    .replace(/class="[^"]*">/g, "")
+    .replace(/&lt;[^&]*&gt;/g, "")
+    .replace(/">/g, "");
+}
+
+
 // ─── Copy button ──────────────────────────────────────────────────────────────
 function CopyButton({ text, style: extra = {} }) {
   const { C } = useTheme();
@@ -31,6 +43,7 @@ function CopyButton({ text, style: extra = {} }) {
 
 // ─── Badge ────────────────────────────────────────────────────────────────────
 function Badge({ text, color }) {
+  const { C } = useTheme();
   return (
     <span style={{ fontSize:9, fontFamily:"'JetBrains Mono',monospace", color, background:color+"18", border:`1px solid ${color}35`, borderRadius:8, padding:"2px 8px", fontWeight:700 }}>
       {text}
@@ -40,6 +53,7 @@ function Badge({ text, color }) {
 
 // ─── FadeIn ───────────────────────────────────────────────────────────────────
 function FadeIn({ delay = 0, children }) {
+  const { C } = useTheme();
   const [vis, setVis] = useState(false);
   useEffect(() => { const t = setTimeout(() => setVis(true), delay); return () => clearTimeout(t); }, [delay]);
   return (
@@ -266,8 +280,8 @@ export default function OptimizeTab({ code, problem, lang }) {
                     <div style={{ fontSize:11, color:C.dim, lineHeight:1.7, marginBottom:s.code_snippet?8:0 }}>{s.explanation}</div>
                     {s.code_snippet && (
                       <div style={{ position:"relative" }}>
-                        <CodeBlock code={s.code_snippet} />
-                        <CopyButton text={s.code_snippet} />
+                        <CodeBlock code={cleanCode(s.code_snippet)} />
+                        <CopyButton text={cleanCode(s.code_snippet)} />
                       </div>
                     )}
                   </div>

@@ -6,6 +6,18 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useTheme } from "../utils/ThemeContext";
 import { Badge, DiffBadge, Section, CodeBlock } from "../components/UI";
 
+// Strip AI-hallucinated HTML remnants like "kw"> from code strings
+function cleanCode(str) {
+  if (!str) return "";
+  return str
+    .replace(/<[^>]+>/g, "")
+    .replace(/"[a-zA-Z-]+">/g, "")
+    .replace(/class="[^"]*">/g, "")
+    .replace(/&lt;[^&]*&gt;/g, "")
+    .replace(/">/g, "");
+}
+
+
 // ─── Copy button ─────────────────────────────────────────────────────────────
 function CopyButton({ text, style = {} }) {
   const { C } = useTheme();
@@ -120,9 +132,9 @@ function LogicStepper({ steps }) {
             <div style={{ fontSize:9, color:C.cyan, fontFamily:"'JetBrains Mono',monospace", textTransform:"uppercase", letterSpacing:1, marginBottom:4 }}>📍 Code line</div>
             <div style={{ position:"relative" }}>
               <pre style={{ background:"#0a0a12", border:`1px solid ${C.cyan}35`, borderLeft:`3px solid ${C.cyan}`, borderRadius:8, padding:"8px 36px 8px 12px", fontSize:12, color:C.cyan, fontFamily:"'JetBrains Mono',monospace", margin:0, overflowX:"auto" }}>
-                {s.code_line}
+                {cleanCode(s.code_line)}
               </pre>
-              <CopyButton text={s.code_line} />
+              <CopyButton text={cleanCode(s.code_line)} />
             </div>
           </div>
         )}
@@ -319,9 +331,9 @@ export default function LCTutorTab({ result }) {
                     {s.code_line && (
                       <div style={{ position:"relative" }}>
                         <pre style={{ background:"#0a0a12", borderRadius:6, padding:"5px 36px 5px 9px", fontSize:10, color:C.cyan, fontFamily:"'JetBrains Mono',monospace", margin:0, overflowX:"auto" }}>
-                          {s.code_line}
+                          {cleanCode(s.code_line)}
                         </pre>
-                        <CopyButton text={s.code_line} />
+                        <CopyButton text={cleanCode(s.code_line)} />
                       </div>
                     )}
                   </div>

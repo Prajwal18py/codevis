@@ -114,11 +114,18 @@ export function CodeBlock({ code, lang }) {
   const [copied, setCopied] = useState(false);
   const [visible, setVisible] = useState(false);
   useEffect(()=>{ const t=setTimeout(()=>setVisible(true),50); return ()=>clearTimeout(t); },[]);
+  // Strip AI-hallucinated HTML tag remnants like "kw">vector or class="cmt">
+  const cleanCode = (code||"")
+    .replace(/<[^>]+>/g, "")
+    .replace(/"[a-zA-Z-]+">/g, "")
+    .replace(/class="[^"]*">/g, "")
+    .replace(/&lt;[^&]*&gt;/g, "")
+    .replace(/">/g, "");
   const copy = useCallback(async()=>{
-    try { await navigator.clipboard.writeText(code||""); setCopied(true); setTimeout(()=>setCopied(false),1800); } catch{}
-  },[code]);
+    try { await navigator.clipboard.writeText(cleanCode||""); setCopied(true); setTimeout(()=>setCopied(false),1800); } catch{}
+  },[cleanCode]);
   if (!code) return null;
-  const lines = code.split("\n");
+  const lines = cleanCode.split("\n");
   return (
     <div style={{ position:"relative", borderRadius:9, border:`1px solid ${C.border}`, background:"#07070e", overflow:"hidden", margin:"8px 0 0 0", opacity:visible?1:0, transition:"opacity .3s ease" }}>
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"5px 10px", background:C.surface, borderBottom:`1px solid ${C.border}` }}>
@@ -136,7 +143,7 @@ export function CodeBlock({ code, lang }) {
         <div style={{ padding:"10px 8px", color:C.muted+"60", fontSize:10, lineHeight:"1.75", textAlign:"right", minWidth:32, userSelect:"none", borderRight:`1px solid ${C.border}20`, fontFamily:"'JetBrains Mono',monospace", flexShrink:0 }}>
           {lines.map((_,i)=><div key={i}>{i+1}</div>)}
         </div>
-        <pre style={{ padding:"10px 14px", fontSize:11, color:C.cyan, fontFamily:"'JetBrains Mono',monospace", lineHeight:"1.75", margin:0, flex:1, whiteSpace:"pre" }}>{code}</pre>
+        <pre style={{ padding:"10px 14px", fontSize:11, color:C.cyan, fontFamily:"'JetBrains Mono',monospace", lineHeight:"1.75", margin:0, flex:1, whiteSpace:"pre" }}>{cleanCode}</pre>
       </div>
     </div>
   );

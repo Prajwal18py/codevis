@@ -5,6 +5,18 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useTheme } from "../utils/ThemeContext";
 
+// Strip AI-hallucinated HTML remnants like "kw"> from code strings
+function cleanCode(str) {
+  if (!str) return "";
+  return str
+    .replace(/<[^>]+>/g, "")
+    .replace(/"[a-zA-Z-]+">/g, "")
+    .replace(/class="[^"]*">/g, "")
+    .replace(/&lt;[^&]*&gt;/g, "")
+    .replace(/">/g, "");
+}
+
+
 // ─── Copy button ──────────────────────────────────────────────────────────────
 function CopyButton({ text }) {
   const { C } = useTheme();
@@ -228,9 +240,9 @@ export default function DryRun({ steps }) {
                     {s.code_line && (
                       <div style={{ position:"relative" }}>
                         <pre style={{ background:"#0a0a12", border:`1px solid ${C.accentL}30`, borderRadius:7, padding:"6px 38px 6px 10px", fontSize:10, color:C.accentL, fontFamily:"'JetBrains Mono',monospace", margin:0, overflowX:"auto" }}>
-                          {s.code_line}
+                          {cleanCode(s.code_line)}
                         </pre>
-                        <CopyButton text={s.code_line} />
+                        <CopyButton text={cleanCode(s.code_line)} />
                       </div>
                     )}
                   </div>

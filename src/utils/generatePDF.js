@@ -127,8 +127,18 @@ pre           { font-family:'JetBrains Mono',monospace; background:#1a1a2e; bord
 // ─── Syntax highlighter (minimal, print-safe) ─────────────────────────────────
 function stripTags(str) {
   if (!str) return "";
-  // Remove any existing HTML tags the AI may have included
-  return str.replace(/<[^>]*>/g, "");
+  let clean = str;
+  // 1. Remove full HTML tags like <span class="kw">text</span>
+  clean = clean.replace(/<[^>]+>/g, "");
+  // 2. Remove AI remnants: "kw">  "cmt">  "str">  "num">
+  clean = clean.replace(/"[a-zA-Z0-9-]+">/g, "");
+  // 3. Remove class="xyz"> patterns
+  clean = clean.replace(/class="[^"]*">/g, "");
+  // 4. Remove &lt;span...&gt; escaped HTML
+  clean = clean.replace(/&lt;[^&]*&gt;/g, "");
+  // 5. Catch any remaining "> sequences from partial tags
+  clean = clean.replace(/[a-zA-Z0-9-]+">/g, "");
+  return clean;
 }
 
 function highlight(code) {
@@ -227,7 +237,7 @@ ${result.approaches?.length ? `
       </div>
       <div class="approach-body">
         <p style="margin-bottom:10px;color:#444;font-size:12px;line-height:1.7">${typeof a.plain_explanation === "string" ? a.plain_explanation : (a.explanation || a.description || "")}</p>
-        ${a.code ? `<pre><code>${highlight(a.code)}</code></pre>` : ""}
+        ${a.code ? `<pre>${stripTags(a.code).replace(/</g,"&lt;").replace(/>/g,"&gt;")}</pre>` : ""}
       </div>
     </div>
   `).join("")}
@@ -399,7 +409,7 @@ ${result.concept_explanations?.length ? `
       <div class="analogy-title">${c.concept}</div>
       <p style="font-size:12px;color:#166534;margin-bottom:5px;font-style:italic">🌍 ${c.simple_analogy}</p>
       <p style="font-size:12px;color:#444;margin-bottom:6px;line-height:1.65">${c.what_it_does_here}</p>
-      ${c.code_snippet ? `<pre><code>${highlight(c.code_snippet)}</code></pre>` : ""}
+      ${c.code_snippet ? `<pre>${stripTags(c.code_snippet).replace(/</g,"&lt;").replace(/>/g,"&gt;")}</pre>` : ""}
     </div>
   `).join("")}
 </div>` : ""}
@@ -427,24 +437,23 @@ ${result.classes?.length ? `
 
 // ─── Print window helper ──────────────────────────────────────────────────────
 function openPrintWindow(html, filename) {
-  const win = window.open("", "_blank");
+  // Always use blob URL — most reliable cross-browser approach
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url  = URL.createObjectURL(blob);
+  const win  = window.open(url, "_blank");
   if (!win) {
-    // Popup blocked — fallback: create blob URL
-    const blob = new Blob([html], { type: "text/html" });
-    const url  = URL.createObjectURL(blob);
+    // Popup blocked — fallback: download as HTML file
     const a    = document.createElement("a");
     a.href     = url;
     a.download = `${filename}-codevis.html`;
     a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 5000);
-    return;
+  } else {
+    win.onload = () => {
+      setTimeout(() => {
+        win.focus();
+        win.print();
+      }, 800);
+    };
   }
-  win.document.write(html);
-  win.document.close();
-  win.onload = () => {
-    setTimeout(() => {
-      win.focus();
-      win.print();
-    }, 700);
-  };
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
 }

@@ -6,6 +6,18 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useTheme } from "../utils/ThemeContext";
 import { Section, CodeBlock } from "../components/UI";
 
+// Strip AI-hallucinated HTML remnants like "kw"> from code strings
+function cleanCode(str) {
+  if (!str) return "";
+  return str
+    .replace(/<[^>]+>/g, "")
+    .replace(/"[a-zA-Z-]+">/g, "")
+    .replace(/class="[^"]*">/g, "")
+    .replace(/&lt;[^&]*&gt;/g, "")
+    .replace(/">/g, "");
+}
+
+
 const OOP_META = [
   { key:"encapsulation",     label:"Encapsulation",                 icon:"🔒" },
   { key:"abstraction",       label:"Abstraction",                   icon:"🎭" },
@@ -160,9 +172,9 @@ function ObjectStepper({ steps }) {
               padding:"8px 36px 8px 12px", fontSize:12, color:C.cyan,
               fontFamily:"'JetBrains Mono',monospace", overflowX:"auto", margin:0,
             }}>
-              {s.code_line}
+              {cleanCode(s.code_line)}
             </pre>
-            <CopyButton text={s.code_line} />
+            <CopyButton text={cleanCode(s.code_line)} />
           </div>
         )}
 
