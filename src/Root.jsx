@@ -4,12 +4,24 @@ import App       from "./App";
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 import { supabase } from "./utils/supabase";
+import { decodeShare } from "./utils/share";
+import SharedView from "./pages/SharedView";
 
 export default function Root() {
-  const [user,    setUser]    = useState(undefined);
-  const [view,    setView]    = useState("dashboard");
-  const [dashKey, setDashKey] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [user,       setUser]       = useState(undefined);
+  const [view,       setView]       = useState("dashboard");
+  const [dashKey,    setDashKey]    = useState(0);
+  const [loading,    setLoading]    = useState(true);
+  const [sharedData, setSharedData] = useState(null); // decoded share payload
+
+  // Read share hash immediately — before auth or anything else
+  useEffect(() => {
+    const shared = decodeShare(window.location.hash);
+    if (shared?.result) {
+      setSharedData(shared);
+      history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -18,7 +30,7 @@ export default function Root() {
     });
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
       setUser(session?.user || null);
-      if (session?.user) setView("dashboard");
+      if (session?.user) setView(sharedData ? "app" : "dashboard");
     });
     return () => subscription.unsubscribe();
   }, []);
@@ -29,6 +41,14 @@ export default function Root() {
       <div style={{ width:32, height:32, borderRadius:"50%", border:"3px solid #a855f7", borderTopColor:"transparent", animation:"spin .8s linear infinite" }} />
       <style>{"@keyframes spin{to{transform:rotate(360deg)}}"}</style>
     </div>
+  );
+
+  // Show shared analysis publicly — no login needed
+  if (sharedData?.result) return (
+    <SharedView
+      data={sharedData}
+      onOpenApp={() => { setSharedData(null); setView(user ? "app" : "dashboard"); }}
+    />
   );
 
   if (!user) return <LoginPage />;

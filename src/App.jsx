@@ -282,17 +282,7 @@ export default function App({ user: userProp, onDashboard }) {
   // Mobile — show input or output panel
   const [mobilePanel, setMobilePanel] = useState("input"); // "input" | "output"
 
-  // ── Load shared link ──────────────────────────────────────────────────────
-  useEffect(() => {
-    const shared = decodeShare(window.location.hash);
-    if (shared?.result) {
-      setMode(shared.mode||"lc"); setLang(shared.lang||"cpp");
-      setResult(shared.result); setVizTab(shared.mode==="oop"?"tutor":"logic");
-      setShareBanner("📎 Loaded from shared link!");
-      setTimeout(()=>setShareBanner(null),4000);
-      history.replaceState(null,"",window.location.pathname);
-    }
-  }, []);
+
 
   // ── Auth ──────────────────────────────────────────────────────────────────
   useEffect(() => {
