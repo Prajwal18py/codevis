@@ -11,7 +11,7 @@
 // - Staggered entrance animations on all stat boxes
 // - Better empty states with CTA icons
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTheme } from "../utils/ThemeContext";
 import { getHistory, getQuizScores, getStreak, signOut } from "../utils/supabase";
 
@@ -209,29 +209,37 @@ function DailyTip({ C }) {
 }
 
 // ─── Main Dashboard ───────────────────────────────────────────────────────────
-export default function Dashboard({ user, onEnterApp }) {
+export default function Dashboard({ user, onEnterApp, refreshKey }) {
   const { C, isDark, toggle } = useTheme();
   const [history,    setHistory]    = useState([]);
   const [quizScores, setQuizScores] = useState([]);
   const [streak,     setStreak]     = useState({ current: 0, longest: 0 });
   const [loading,    setLoading]    = useState(true);
+  const [refreshing, setRefreshing]  = useState(false);
 
+  async function load() {
+    try {
+      const [h, q, s] = await Promise.all([
+        getHistory(user.id),
+        getQuizScores(user.id),
+        getStreak(user.id),
+      ]);
+      setHistory(h || []);
+      setQuizScores(q || []);
+      setStreak(s || { current: 0, longest: 0 });
+    } catch(e) { console.error(e); }
+    finally { setLoading(false); }
+  }
+
+  // Fetch on mount
+  useEffect(() => { load(); }, [user.id]);
+
+  // Refetch whenever user switches back to dashboard tab
   useEffect(() => {
-    async function load() {
-      try {
-        const [h, q, s] = await Promise.all([
-          getHistory(user.id),
-          getQuizScores(user.id),
-          getStreak(user.id),
-        ]);
-        setHistory(h || []);
-        setQuizScores(q || []);
-        setStreak(s || { current: 0, longest: 0 });
-      } catch(e) { console.error(e); }
-      finally { setLoading(false); }
-    }
-    load();
-  }, [user]);
+    const onFocus = () => load();
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
+  }, [user.id]);
 
   // Keyboard shortcut: S → open app
   useEffect(() => {
@@ -291,6 +299,9 @@ export default function Dashboard({ user, onEnterApp }) {
             </button>
             <button onClick={onEnterApp} style={{ padding: "7px 16px", borderRadius: 8, border: "none", background: `linear-gradient(135deg,${C.accent},${C.accentL})`, color: "#fff", fontFamily: "'Syne',sans-serif", fontSize: 12, fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", gap: 5 }}>
               ⬡ Open App
+            </button>
+            <button onClick={() => loadData(true)} disabled={refreshing} title="Refresh stats" style={{ width: 34, height: 34, borderRadius: 8, border: `1px solid ${C.border}`, background: C.card, cursor: "pointer", fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center", animation: refreshing ? "spin 1s linear infinite" : "none" }}>
+              🔄
             </button>
             <button onClick={signOut} style={{ padding: "7px 12px", borderRadius: 8, border: `1px solid ${C.border}`, background: "transparent", color: C.muted, fontFamily: "'JetBrains Mono',monospace", fontSize: 10, cursor: "pointer" }}>
               Sign out

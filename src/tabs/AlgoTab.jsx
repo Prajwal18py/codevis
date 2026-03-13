@@ -205,6 +205,7 @@ function VisualStepper({ steps }) {
 export default function AlgoTab({ onAnalyze, result, loading, error }) {
   const { C } = useTheme();
   const [selected, setSelected] = useState(null);
+  const [lang, setLang] = useState("cpp");
   const [vizTab, setVizTab] = useState("visual");
   const [hoveredAlgo, setHoveredAlgo] = useState(null);
 
@@ -279,7 +280,25 @@ export default function AlgoTab({ onAnalyze, result, loading, error }) {
 
       {/* ── Right: result ── */}
       <div style={{ minWidth: 0 }}>
-        {/* Empty state */}
+        {/* Lang toggle — always visible */}
+      <div style={{ display:"flex", gap:8, alignItems:"center", marginBottom:12 }}>
+        <span style={{ fontSize:10, color:C.muted, fontFamily:"'JetBrains Mono',monospace" }}>Language:</span>
+        <div style={{ display:"flex", gap:2, background:C.surface, borderRadius:8, padding:3, border:`1px solid ${C.border}` }}>
+          {[{id:"cpp",label:"C++"},{id:"python",label:"Python"}].map(l => (
+            <button key={l.id} onClick={() => setLang(l.id)}
+              style={{ padding:"4px 14px", borderRadius:6, border:"none",
+                background: lang===l.id ? (l.id==="python" ? C.green+"22" : C.accentL+"22") : "transparent",
+                color: lang===l.id ? (l.id==="python" ? C.green : C.accentL) : C.muted,
+                fontFamily:"'JetBrains Mono',monospace", fontSize:11, fontWeight:lang===l.id?700:400,
+                cursor:"pointer", transition:"all .15s" }}>
+              {l.label}
+            </button>
+          ))}
+        </div>
+
+      </div>
+
+      {/* Empty state */}
         {!selected && !loading && (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: 400, gap: 14, color: C.muted }}>
             <div style={{ fontSize: 40, opacity: 0.1 }}>⬡</div>
@@ -342,7 +361,6 @@ export default function AlgoTab({ onAnalyze, result, loading, error }) {
               </div>
             )}
 
-            {/* Viz sub-tabs */}
             <div style={{ display: "flex", gap: 3, background: C.surface, borderRadius: 9, padding: 3, border: `1px solid ${C.border}`, marginBottom: 12 }}>
               {vizTabs.map(t => (
                 <button key={t.id} onClick={() => setVizTab(t.id)} style={{
@@ -397,8 +415,8 @@ export default function AlgoTab({ onAnalyze, result, loading, error }) {
               {/* Full code */}
               {vizTab === "code" && (
                 <div style={{ position: "relative" }}>
-                  <CodeBlock code={result.full_code} />
-                  <CopyButton text={result.full_code} />
+                  <CodeBlock code={lang === "python" ? (result.python_code || result.full_code) : result.full_code} />
+                  <CopyButton text={lang === "python" ? (result.python_code || result.full_code) : result.full_code} />
                 </div>
               )}
 

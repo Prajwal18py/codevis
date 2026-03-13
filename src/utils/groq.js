@@ -1,21 +1,36 @@
 // src/utils/groq.js
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
-export async function callGroq(prompt) {
-  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + GROQ_API_KEY },
-    body: JSON.stringify({
-      model: "llama-3.3-70b-versatile",
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.15, max_tokens: 4000,
-      response_format: { type: "json_object" },
-    }),
-  });
-  if (!res.ok) { const e = await res.json(); throw new Error((e.error && e.error.message) || "Groq API error"); }
-  const data = await res.json();
-  const text = data.choices[0].message.content.trim().replace(/^```json\s*/,"").replace(/\s*```$/,"").trim();
-  return JSON.parse(text);
+export async function callGroq(prompt, retries = 3) {
+  for (let attempt = 0; attempt < retries; attempt++) {
+    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + GROQ_API_KEY },
+      body: JSON.stringify({
+        model: "llama-3.3-70b-versatile",
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.15, max_tokens: 4000,
+        response_format: { type: "json_object" },
+      }),
+    });
+
+    if (res.status === 429) {
+      // Rate limit — parse retry-after from error or wait 5s
+      const e = await res.json();
+      const msg = e.error?.message || "";
+      const wait = parseFloat(msg.match(/try again in ([\d.]+)s/)?.[1] || "5");
+      if (attempt < retries - 1) {
+        await new Promise(r => setTimeout(r, (wait + 0.5) * 1000));
+        continue;
+      }
+      throw new Error(`Rate limit hit. Please wait ${Math.ceil(wait)}s and try again.`);
+    }
+
+    if (!res.ok) { const e = await res.json(); throw new Error((e.error && e.error.message) || "Groq API error"); }
+    const data = await res.json();
+    const text = data.choices[0].message.content.trim().replace(/^```json\s*/,"").replace(/\s*```$/,"").trim();
+    return JSON.parse(text);
+  }
 }
 
 // ── LeetCode mode (C++ or Python) ─────────────────────────────
@@ -202,46 +217,70 @@ ${code}
 }
 
 // ── Algorithm mode ─────────────────────────────────────────────
-export function buildAlgoPrompt(algoName) {
-  return `Explain the "${algoName}" algorithm for a beginner. Return JSON only.
+export function buildAlgoPrompt(algoName, lang = "cpp") {
+  return (
+    `Explain the "${algoName}" algorithm for a CS beginner. Return ONLY valid JSON. ` +
+    `All code must be plain text only — no HTML tags, no <span>, no syntax highlighting. ` +
+    `You MUST include BOTH full_code (C++ implementation) AND python_code (Python implementation) fields.
 
-{
-  "name": "${algoName}",
-  "category": "Sorting",
-  "tagline": "one sentence what it does",
-  "real_world_analogy": "1-2 sentence real world analogy",
-  "when_to_use": "1-2 sentences on when to use it",
-  "complexity": {
-    "time_best": "O(n)",
-    "time_avg": "O(n log n)",
-    "time_worst": "O(n^2)",
-    "space": "O(1)",
-    "explanation": "one sentence why"
-  },
-  "visual_steps": [
-    { "step": 1, "title": "Compare first two", "description": "Compare index 0 and 1", "array_before": [5,3,8,1], "array_after": [3,5,8,1], "highlight_indices": [0,1], "action": "swap", "code_line": "if(arr[j]>arr[j+1]) swap(arr[j],arr[j+1]);" },
-    { "step": 2, "title": "Compare next two", "description": "Compare index 1 and 2", "array_before": [3,5,8,1], "array_after": [3,5,8,1], "highlight_indices": [1,2], "action": "compare", "code_line": "for(int j=0;j<n-i-1;j++)" },
-    { "step": 3, "title": "Swap last pair", "description": "Compare index 2 and 3", "array_before": [3,5,8,1], "array_after": [3,5,1,8], "highlight_indices": [2,3], "action": "swap", "code_line": "if(arr[j]>arr[j+1]) swap(arr[j],arr[j+1]);" },
-    { "step": 4, "title": "Pass 1 done", "description": "Largest bubbled to end", "array_before": [3,5,1,8], "array_after": [3,5,1,8], "highlight_indices": [3], "action": "mark", "code_line": "for(int i=0;i<n-1;i++)" },
-    { "step": 5, "title": "Final sorted", "description": "Array is fully sorted", "array_before": [1,3,5,8], "array_after": [1,3,5,8], "highlight_indices": [0,1,2,3], "action": "mark", "code_line": "// done" }
-  ],
-  "full_code": "#include<bits/stdc++.h>\nusing namespace std;\nvoid bubbleSort(int arr[], int n) {\n  for(int i=0;i<n-1;i++) {\n    for(int j=0;j<n-i-1;j++) {\n      if(arr[j]>arr[j+1]) swap(arr[j],arr[j+1]);\n    }\n  }\n}\nint main() {\n  int arr[]={5,3,8,1};\n  int n=4;\n  bubbleSort(arr,n);\n  for(int i=0;i<n;i++) cout<<arr[i]<<\" \";\n}",
-  "dry_run_example": {
-    "input": [5,3,8,1],
-    "passes": [
-      { "pass": 1, "array": [3,5,1,8], "swaps": [[0,1],[2,3]], "note": "Largest element 8 moved to end" },
-      { "pass": 2, "array": [3,1,5,8], "swaps": [[1,2]], "note": "5 moved to second last" },
-      { "pass": 3, "array": [1,3,5,8], "swaps": [[0,1]], "note": "Array fully sorted" }
-    ],
-    "output": [1,3,5,8]
-  },
-  "pros": ["Simple to understand", "No extra memory needed"],
-  "cons": ["Slow for large arrays O(n^2)", "Many unnecessary comparisons"],
-  "compare_with": [
-    { "algo": "Merge Sort", "when_better": "Merge Sort is better for large datasets", "when_worse": "Bubble Sort is better for nearly-sorted tiny arrays" }
-  ],
-  "key_insights": ["Largest element always bubbles to the end each pass", "After k passes, last k elements are in their correct position"]
-}
+` +
+    `{
+` +
+    `  "name": "${algoName}",
+` +
+    `  "category": "Sorting",
+` +
+    `  "tagline": "one sentence what it does",
+` +
+    `  "real_world_analogy": "1-2 sentence real world analogy",
+` +
+    `  "when_to_use": "1-2 sentences on when to use it",
+` +
+    `  "complexity": {
+` +
+    `    "time_best": "O(n)", "time_avg": "O(n log n)", "time_worst": "O(n^2)",
+` +
+    `    "space": "O(1)", "explanation": "one sentence why"
+` +
+    `  },
+` +
+    `  "visual_steps": [
+` +
+    `    { "step": 1, "title": "Compare first two", "description": "Compare index 0 and 1", "array_before": [5,3,8,1], "array_after": [3,5,8,1], "highlight_indices": [0,1], "action": "swap", "code_line": "if arr[0] > arr[1]: swap" },
+` +
+    `    { "step": 2, "title": "Next pair", "description": "Compare index 1 and 2", "array_before": [3,5,8,1], "array_after": [3,5,8,1], "highlight_indices": [1,2], "action": "compare", "code_line": "for j in range(n-i-1)" }
+` +
+    `  ],
+` +
+    `  "full_code": "paste clean ${lang === "python" ? "Python" : "C++"} code here as a single string with \\n for newlines",
+` +
+    `  "python_code": "paste clean Python code here as a single string with \\n for newlines",
+` +
+    `  "dry_run_example": {
+` +
+    `    "input": [5,3,8,1],
+` +
+    `    "passes": [
+` +
+    `      { "pass": 1, "array": [3,5,1,8], "swaps": [[0,1],[2,3]], "note": "Largest element 8 moved to end" }
+` +
+    `    ],
+` +
+    `    "output": [1,3,5,8]
+` +
+    `  },
+` +
+    `  "pros": ["Simple", "In-place"],
+` +
+    `  "cons": ["Slow O(n^2)"],
+` +
+    `  "compare_with": [{ "algo": "Merge Sort", "when_better": "better for large data", "when_worse": "worse for small data" }],
+` +
+    `  "key_insights": ["insight 1", "insight 2"]
+` +
+    `}
 
-Replace the example values above with actual correct values for "${algoName}". Keep the same JSON structure exactly.`;
+` +
+    `Replace ALL example values above with actual correct values for "${algoName}". Keep exact JSON structure.`
+  );
 }

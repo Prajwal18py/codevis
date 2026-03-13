@@ -7,6 +7,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../utils/ThemeContext";
 import { callGroq } from "../utils/groq";
+import { saveQuizScore, updateStreak } from "../utils/supabase";
 
 function buildQuizPrompt(topic) {
   return `Generate a 5-question multiple choice quiz about "${topic}" for a CS student.
@@ -78,7 +79,7 @@ function SkeletonQuestion({ index }) {
   );
 }
 
-export default function QuizTab() {
+export default function QuizTab({ user }) {
   const { C } = useTheme();
   const [topic,     setTopic]     = useState("Bubble Sort");
   const [custom,    setCustom]    = useState("");
@@ -86,7 +87,8 @@ export default function QuizTab() {
   const [quiz,      setQuiz]      = useState(null);
   const [loading,   setLoading]   = useState(false);
   const [answers,   setAnswers]   = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted,  setSubmitted]  = useState(false);
+  const [scoreSaved,  setScoreSaved]  = useState(null); // null | 'saving' | 'saved' | 'error'
   const [error,     setError]     = useState("");
   const [activeQ,   setActiveQ]   = useState(0); // focused question index for keyboard
 
@@ -185,6 +187,14 @@ export default function QuizTab() {
       )}
 
       {/* Score banner */}
+      {scoreSaved && (
+        <div style={{ padding:"8px 14px", borderRadius:8, fontFamily:"'JetBrains Mono',monospace", fontSize:11,
+          background: scoreSaved==="saved" ? "#10b98122" : scoreSaved==="saving" ? "#f59e0b22" : "#ef444422",
+          color: scoreSaved==="saved" ? "#10b981" : scoreSaved==="saving" ? "#f59e0b" : "#ef4444",
+          border: `1px solid ${scoreSaved==="saved" ? "#10b98144" : scoreSaved==="saving" ? "#f59e0b44" : "#ef444444"}` }}>
+          {scoreSaved==="saved" ? "✓ Score saved to dashboard!" : scoreSaved==="saving" ? "⟳ Saving score..." : `✗ Save failed: ${scoreSaved.replace("error:","")} — Check Supabase RLS`}
+        </div>
+      )}
       {submitted && quiz && (
         <div style={{ background: `linear-gradient(135deg,${C.accent}20,${C.cyan}20)`, border: `1px solid ${C.accentL}40`, borderRadius: 12, padding: "16px 18px", textAlign: "center", animation: "popIn .35s ease" }}>
           <div style={{ fontFamily: "'Orbitron','JetBrains Mono',monospace", fontSize: 36, fontWeight: 700, color: pct >= 80 ? C.green : pct >= 60 ? C.cyan : pct >= 40 ? C.orange : C.red, marginBottom: 4 }}>
@@ -278,7 +288,22 @@ export default function QuizTab() {
           {/* Submit */}
           {!submitted && (
             <button
-              onClick={() => setSubmitted(true)}
+              onClick={async () => {
+                    setSubmitted(true);
+                    if (user?.id) {
+                      setScoreSaved("saving");
+                      try {
+                        await saveQuizScore({ userId: user.id, topic: custom || topic, score, total });
+                        await updateStreak(user.id);
+                        setScoreSaved("saved");
+                      } catch(e) {
+                        console.error("Score save failed:", e);
+                        setScoreSaved("error:" + e.message);
+                      }
+                    } else {
+                      setScoreSaved("no-user");
+                    }
+                  }}
               disabled={answeredCount < total}
               style={{ padding: "12px", borderRadius: 10, border: "none", background: answeredCount < total ? C.accentL + "20" : `linear-gradient(135deg,${C.accent},${C.accentL})`, color: answeredCount < total ? C.muted : "#fff", fontFamily: "'Syne',sans-serif", fontSize: 14, fontWeight: 800, cursor: answeredCount < total ? "not-allowed" : "pointer", transition: "all .2s", boxShadow: answeredCount >= total ? `0 0 20px ${C.glow}` : "none" }}
             >
