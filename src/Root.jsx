@@ -28,9 +28,11 @@ export default function Root() {
       setUser(session?.user || null);
       setLoading(false);
     });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null);
-      if (session?.user) setView(sharedData ? "app" : "dashboard");
+      // Only redirect on actual sign-in — not on TOKEN_REFRESHED or other events
+      if (event === "SIGNED_IN") setView(sharedData ? "app" : "dashboard");
+      if (event === "SIGNED_OUT") setView("dashboard");
     });
     return () => subscription.unsubscribe();
   }, []);
