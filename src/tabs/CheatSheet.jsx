@@ -183,7 +183,7 @@ export default function CheatSheet() {
 
       {/* Topic picker */}
       <div style={{ background: C.surface, borderRadius: 12, border: `1px solid ${C.border}`, padding: 14 }}>
-        <div style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 10 }}>Generate a cheat sheet for:</div>
+        <div style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 10, opacity: 0.85 }}>Generate a cheat sheet for:</div>
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap", marginBottom: 12 }}>
           {TOPICS.map(t => {
             const active = topic === t && !custom;
@@ -192,7 +192,7 @@ export default function CheatSheet() {
                 padding: "4px 10px", borderRadius: 20,
                 border: `1px solid ${active ? C.accentL + "60" : C.border}`,
                 background: active ? C.accentL + "18" : "transparent",
-                color: active ? C.accentL : C.muted,
+                color: active ? C.accentL : C.text,
                 fontFamily: "'JetBrains Mono',monospace", fontSize: 10,
                 cursor: "pointer", transition: "all .15s",
                 fontWeight: active ? 700 : 400,

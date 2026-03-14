@@ -45,7 +45,7 @@ function StatBox({ icon, value, label, color, C, delay = 0 }) {
     <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: "18px 20px", display: "flex", flexDirection: "column", gap: 8, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(10px)", transition: `opacity .4s ease ${delay}ms, transform .4s ease ${delay}ms` }}>
       <div style={{ fontSize: 24 }}>{icon}</div>
       <div style={{ fontFamily: "'Orbitron',monospace", fontSize: 26, fontWeight: 700, color: color || C.accentL }}>{display || "—"}</div>
-      <div style={{ fontSize: 11, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>{label}</div>
+      <div style={{ fontSize: 11, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.8 }}>{label}</div>
     </div>
   );
 }
@@ -62,7 +62,7 @@ function StreakFlame({ count, C, delay = 0 }) {
     <div style={{ background: isActive ? C.orange + "15" : C.card, border: `1px solid ${isActive ? C.orange + "40" : C.border}`, borderRadius: 14, padding: "18px 20px", display: "flex", flexDirection: "column", gap: 8, position: "relative", overflow: "hidden", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(10px)", transition: `opacity .4s ease ${delay}ms, transform .4s ease ${delay}ms` }}>
       <div style={{ fontSize: 24, filter: isActive ? "none" : "grayscale(1) opacity(.4)" }}>🔥</div>
       <div style={{ fontFamily: "'Orbitron',monospace", fontSize: 26, fontWeight: 700, color: isActive ? C.orange : C.muted }}>{displayed}</div>
-      <div style={{ fontSize: 11, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>Day Streak</div>
+      <div style={{ fontSize: 11, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.8 }}>Day Streak</div>
       {milestone && (
         <div style={{ position: "absolute", top: 8, right: 8, fontSize: 9, fontFamily: "'JetBrains Mono',monospace", color: C.orange, fontWeight: 700, background: C.orange + "18", border: `1px solid ${C.orange}30`, borderRadius: 8, padding: "2px 7px" }}>
           {milestone}
@@ -104,7 +104,7 @@ function ActivityRow({ item, C }) {
         <div style={{ display: "flex", gap: 6, marginTop: 3, flexWrap: "wrap" }}>
           <span style={{ fontSize: 9, fontFamily: "'JetBrains Mono',monospace", color: typeColor, background: typeColor + "18", border: `1px solid ${typeColor}30`, borderRadius: 8, padding: "1px 7px", fontWeight: 700 }}>{item.type?.toUpperCase()}</span>
           <span style={{ fontSize: 9, fontFamily: "'JetBrains Mono',monospace", color: langColor, background: langColor + "18", border: `1px solid ${langColor}30`, borderRadius: 8, padding: "1px 7px", fontWeight: 700 }}>{item.lang?.toUpperCase()}</span>
-          <span style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>{date}</span>
+          <span style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.75 }}>{date}</span>
         </div>
       </div>
     </div>
@@ -122,7 +122,7 @@ function QuizRow({ item, C }) {
       </div>
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: 13, fontWeight: 600, color: C.text }}>{item.topic}</div>
-        <div style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace", marginTop: 2 }}>{item.score}/{item.total} correct · {date}</div>
+        <div style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", marginTop: 2, opacity: 0.75 }}>{item.score}/{item.total} correct · {date}</div>
       </div>
       <div style={{ width: 64, height: 5, background: C.border, borderRadius: 3, overflow: "hidden" }}>
         <div style={{ height: "100%", width: item.pct + "%", background: pctColor, borderRadius: 3, transition: "width .6s ease" }} />
@@ -198,7 +198,7 @@ function DailyTip({ C }) {
       <div style={{ fontSize: 24, flexShrink: 0 }}>💬</div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 2, lineHeight: 1.5 }}>{TIPS[idx]}</div>
-        <div style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>Daily tip {idx + 1}/{TIPS.length}</div>
+        <div style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.75 }}>Daily tip {idx + 1}/{TIPS.length}</div>
       </div>
       <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
         <button onClick={prev} style={{ width: 26, height: 26, borderRadius: 6, border: `1px solid ${C.border}`, background: "transparent", color: C.muted, cursor: "pointer", fontSize: 12 }}>‹</button>
@@ -291,7 +291,7 @@ export default function Dashboard({ user, onEnterApp, refreshKey }) {
           <div style={{ width: 28, height: 28, borderRadius: 7, background: `linear-gradient(135deg,${C.accent},${C.cyan})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14 }}>⬡</div>
           <span style={{ fontFamily: "'Syne',sans-serif", fontSize: 18, fontWeight: 800, color: C.accentL, letterSpacing: 1 }}>CODEVIS</span>
           <div style={{ marginLeft: "auto", display: "flex", gap: 8, alignItems: "center" }}>
-            <span style={{ fontSize: 9, color: C.muted, fontFamily: "'JetBrains Mono',monospace", display: "flex", alignItems: "center", gap: 4 }}>
+            <span style={{ fontSize: 9, color: C.text, fontFamily: "'JetBrains Mono',monospace", display: "flex", alignItems: "center", gap: 4, opacity: 0.8 }}>
               <kbd style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 4, padding: "1px 5px", fontSize: 9, color: C.dim }}>S</kbd> to open
             </span>
             <button onClick={toggle} title={isDark ? "Switch to Light" : "Switch to Dark"} style={{ width: 34, height: 34, borderRadius: 8, border: `1px solid ${C.border}`, background: C.card, cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -327,13 +327,13 @@ export default function Dashboard({ user, onEnterApp, refreshKey }) {
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 11, color: C.accentL, fontFamily: "'JetBrains Mono',monospace", marginBottom: 3 }}>{greet()},</div>
             <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 24, fontWeight: 800, color: C.text, marginBottom: 3 }}>{name} 👋</div>
-            <div style={{ fontSize: 11, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>Member since {joinDate} · {user.email}</div>
+            <div style={{ fontSize: 11, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.8 }}>Member since {joinDate} · {user.email}</div>
           </div>
           {streak.current > 0 && (
             <div style={{ background: C.orange + "18", border: `1px solid ${C.orange}40`, borderRadius: 12, padding: "10px 16px", textAlign: "center", flexShrink: 0 }}>
               <div style={{ fontSize: 24 }}>🔥</div>
               <div style={{ fontFamily: "'Orbitron',monospace", fontSize: 20, fontWeight: 700, color: C.orange }}>{streak.current}</div>
-              <div style={{ fontSize: 9, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>day streak</div>
+              <div style={{ fontSize: 9, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.8 }}>day streak</div>
             </div>
           )}
           <button className="dash-hero-btn" onClick={onEnterApp} style={{ padding: "12px 24px", borderRadius: 12, border: "none", background: `linear-gradient(135deg,${C.accent},${C.accentL})`, color: "#fff", fontFamily: "'Syne',sans-serif", fontSize: 13, fontWeight: 800, cursor: "pointer", boxShadow: `0 0 28px ${C.accent}44`, whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: 6 }}>
@@ -356,26 +356,26 @@ export default function Dashboard({ user, onEnterApp, refreshKey }) {
             <div style={{ fontSize: 24 }}>🏆</div>
             <div>
               <div style={{ fontFamily: "'Orbitron',monospace", fontSize: 20, fontWeight: 700, color: C.amber }}>{streak.longest}</div>
-              <div style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>Longest streak ever</div>
+              <div style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.8 }}>Longest streak ever</div>
             </div>
           </div>
           {history.length > 0 ? (
             <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: "14px 18px", display: "flex", alignItems: "center", gap: 18 }}>
               <div>
-                <div style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 10 }}>Language Usage</div>
+                <div style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 10, opacity: 0.85 }}>Language Usage</div>
                 <LangDonut cpp={cppCount} py={pyCount} total={history.length} C={C} />
               </div>
               {quizScores.length > 1 && (
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>Recent Quiz Scores</div>
+                  <div style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6, opacity: 0.85 }}>Recent Quiz Scores</div>
                   <QuizSparkline scores={quizScores} C={C} />
-                  <div style={{ fontSize: 9, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>Last {Math.min(quizScores.length, 8)} quizzes</div>
+                  <div style={{ fontSize: 9, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.75 }}>Last {Math.min(quizScores.length, 8)} quizzes</div>
                 </div>
               )}
             </div>
           ) : (
             <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: "14px 18px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ fontSize: 11, color: C.muted, fontFamily: "'JetBrains Mono',monospace", textAlign: "center", lineHeight: 1.8 }}>
+              <div style={{ fontSize: 11, color: C.text, fontFamily: "'JetBrains Mono',monospace", textAlign: "center", lineHeight: 1.8, opacity: 0.8 }}>
                 No language data yet.<br /><span style={{ opacity: 0.6, fontSize: 10 }}>Analyze a problem to start tracking.</span>
               </div>
             </div>
@@ -391,14 +391,14 @@ export default function Dashboard({ user, onEnterApp, refreshKey }) {
           <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 14, padding: "18px 20px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
               <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 14, fontWeight: 800, color: C.text }}>📚 Recent Analyses</div>
-              <span style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace" }}>{history.length} total</span>
+              <span style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.8 }}>{history.length} total</span>
             </div>
             {loading ? (
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {[1, 2, 3].map(i => <SkeletonCard key={i} C={C} />)}
               </div>
             ) : history.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "30px 0", color: C.muted }}>
+              <div style={{ textAlign: "center", padding: "30px 0", color: C.text, opacity: 0.8 }}>
                 <div style={{ fontSize: 32, marginBottom: 8, opacity: 0.15 }}>🧩</div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, lineHeight: 2 }}>
                   No analyses yet<br />
@@ -425,7 +425,7 @@ export default function Dashboard({ user, onEnterApp, refreshKey }) {
                 {[1, 2, 3].map(i => <SkeletonCard key={i} C={C} />)}
               </div>
             ) : quizScores.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "30px 0", color: C.muted }}>
+              <div style={{ textAlign: "center", padding: "30px 0", color: C.text, opacity: 0.8 }}>
                 <div style={{ fontSize: 32, marginBottom: 8, opacity: 0.15 }}>🎯</div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, lineHeight: 2 }}>
                   No quizzes yet<br />

@@ -140,7 +140,7 @@ export default function QuizTab({ user }) {
 
       {/* Topic picker */}
       <div style={{ background: C.surface, borderRadius: 12, border: `1px solid ${C.border}`, padding: 14 }}>
-        <div style={{ fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 10 }}>Pick a topic to get quizzed on</div>
+        <div style={{ fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", textTransform: "uppercase", letterSpacing: 1, marginBottom: 10, opacity: 0.85 }}>Pick a topic to get quizzed on</div>
 
         {/* Topic search */}
         <input
@@ -154,7 +154,7 @@ export default function QuizTab({ user }) {
           {filteredTopics.map(t => {
             const active = topic === t && !custom;
             return (
-              <button key={t} onClick={() => { setTopic(t); setCustom(""); }} style={{ padding: "5px 11px", borderRadius: 20, border: `1px solid ${active ? C.accentL + "60" : C.border}`, background: active ? C.accentL + "18" : "transparent", color: active ? C.accentL : C.muted, fontFamily: "'JetBrains Mono',monospace", fontSize: 10, cursor: "pointer", transition: "all .15s", fontWeight: active ? 700 : 400 }}>
+              <button key={t} onClick={() => { setTopic(t); setCustom(""); }} style={{ padding: "5px 11px", borderRadius: 20, border: `1px solid ${active ? C.accentL + "60" : C.border}`, background: active ? C.accentL + "18" : "transparent", color: active ? C.accentL : C.text, fontFamily: "'JetBrains Mono',monospace", fontSize: 10, cursor: "pointer", transition: "all .15s", fontWeight: active ? 700 : 500, opacity: active ? 1 : 0.8 }}>
                 {t}
               </button>
             );

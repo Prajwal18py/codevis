@@ -26,6 +26,7 @@ import CheatSheet     from "./tabs/CheatSheet";
 import OOPConceptsTab from "./tabs/OOPConceptsTab";
 import HistoryTab     from "./tabs/HistoryTab";
 import GraphTreeTab   from "./tabs/GraphTreeTab";
+import BattleTab     from "./tabs/BattleTab";
 
 // ── Samples ───────────────────────────────────────────────────────────────────
 const SAMPLES = {
@@ -158,6 +159,7 @@ const TOP_MODES=[
   {id:"graph",       icon:"🌳",label:"Graph & Tree"},
   {id:"quiz",        icon:"🎯",label:"Quiz"},
   {id:"cheatsheet",  icon:"📄",label:"Cheat Sheet"},
+  {id:"battle",      icon:"⚔️", label:"Battle"},
   {id:"history",     icon:"📚",label:"History"},
 ];
 
@@ -172,7 +174,7 @@ const OOP_TABS=[
   {id:"diagram",label:"⬡ Diagram"},
 ];
 
-const FULLWIDTH=["algo","playground","compare","quiz","cheatsheet","history","oopconcepts","graph"];
+const FULLWIDTH=["algo","playground","compare","quiz","cheatsheet","history","oopconcepts","graph","battle"];
 
 // ── useIsMobile ───────────────────────────────────────────────────────────────
 function useIsMobile() {
@@ -243,7 +245,7 @@ function MobileNav({ C, mode, setMode, setResult, setAlgoResult, setError, setVi
         </div>
         <div style={{ display:"flex",flexDirection:"column",gap:3 }}>
           {TOP_MODES.map(m=>(
-            <button key={m.id} onClick={()=>{ setMode(m.id); setError(""); setVizTab(m.id==="oop"?"tutor":"logic"); onClose(); }} style={{ display:"flex",alignItems:"center",gap:10,padding:"10px 12px",borderRadius:9,border:"none",background:mode===m.id?C.accentL+"22":"transparent",color:mode===m.id?C.accentL:C.text,fontFamily:"'JetBrains Mono',monospace",fontSize:12,cursor:"pointer",fontWeight:mode===m.id?700:400,textAlign:"left",transition:"all .15s" }}>
+            <button key={m.id} onClick={()=>{ setMode(m.id); setError(""); onClose(); }} style={{ display:"flex",alignItems:"center",gap:10,padding:"10px 12px",borderRadius:9,border:"none",background:mode===m.id?C.accentL+"22":"transparent",color:mode===m.id?C.accentL:C.text,fontFamily:"'JetBrains Mono',monospace",fontSize:12,cursor:"pointer",fontWeight:mode===m.id?700:500,textAlign:"left",transition:"all .15s" }}>
               <span style={{ fontSize:16 }}>{m.icon}</span>{m.label}
             </button>
           ))}
@@ -300,7 +302,7 @@ export default function App({ user: userProp, onDashboard }) {
 
   async function handleAnalyze() {
     setLoading(true); setError(""); setResult(null); setSaved(false);
-    setVizTab(mode==="oop"?"tutor":"logic");
+    // setVizTab reset removed — keep current vizTab on mode switch
     if (isMobile) setMobilePanel("output");
     try {
       const prompt=mode==="lc"?buildLCPrompt(lcProblem,lcCode,lang):buildOOPPrompt(oopCode,lang);
@@ -355,7 +357,7 @@ export default function App({ user: userProp, onDashboard }) {
         {!isMobile && (
           <div style={{ display:"flex",gap:1,overflowX:"auto",flex:1 }}>
             {TOP_MODES.map(m=>(
-              <button key={m.id} onClick={()=>{setMode(m.id);setError("");setVizTab(m.id==="oop"?"tutor":"logic");}} style={{ display:"flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:7,border:"none",background:mode===m.id?C.accentL+"22":"transparent",color:mode===m.id?C.accentL:C.muted,fontFamily:"'JetBrains Mono',monospace",fontSize:10,cursor:"pointer",fontWeight:mode===m.id?700:400,whiteSpace:"nowrap",borderBottom:mode===m.id?`2px solid ${C.accentL}`:"2px solid transparent",flexShrink:0,transition:"all .15s" }}>
+              <button key={m.id} onClick={()=>{setMode(m.id);setError("");}} style={{ display:"flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:7,border:"none",background:mode===m.id?C.accentL+"22":"transparent",color:mode===m.id?C.accentL:C.text,fontFamily:"'JetBrains Mono',monospace",fontSize:10,cursor:"pointer",fontWeight:mode===m.id?700:500,whiteSpace:"nowrap",borderBottom:mode===m.id?`2px solid ${C.accentL}`:"2px solid transparent",opacity:mode===m.id?1:0.75,flexShrink:0,transition:"all .15s" }}>
                 <span>{m.icon}</span><span>{m.label}</span>
               </button>
             ))}
@@ -390,8 +392,8 @@ export default function App({ user: userProp, onDashboard }) {
             <div style={{ display:"flex",alignItems:"center",gap:5 }}>
               {onDashboard && !isMobile && <button onClick={onDashboard} style={{ padding:"4px 9px",borderRadius:7,border:`1px solid ${C.border}`,background:"transparent",color:C.muted,fontFamily:"'JetBrains Mono',monospace",fontSize:10,cursor:"pointer" }}>📊</button>}
               {user.user_metadata?.avatar_url
-                ?<img src={user.user_metadata.avatar_url} alt="" referrerPolicy="no-referrer" crossOrigin="anonymous" style={{ width:26,height:26,borderRadius:"50%",border:`1.5px solid ${C.border}`,cursor:"pointer" }} onClick={onDashboard} onError={e=>{e.target.style.display="none";}} />
-                :<div onClick={onDashboard} style={{ width:26,height:26,borderRadius:"50%",background:`linear-gradient(135deg,${C.accent},${C.cyan})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#fff",cursor:"pointer",fontFamily:"'Syne',sans-serif",flexShrink:0 }}>
+                ?<img src={user.user_metadata.avatar_url} alt="" referrerPolicy="no-referrer" crossOrigin="anonymous" style={{ width:26,height:26,borderRadius:"50%",border:`1.5px solid ${C.border}`,cursor:"default" }} onError={e=>{e.target.style.display="none";}} />
+                :<div style={{ width:26,height:26,borderRadius:"50%",background:`linear-gradient(135deg,${C.accent},${C.cyan})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#fff",cursor:"default",fontFamily:"'Syne',sans-serif",flexShrink:0 }}>
                   {(user.user_metadata?.name||user.email||"U")[0].toUpperCase()}
                 </div>
               }
@@ -503,7 +505,7 @@ export default function App({ user: userProp, onDashboard }) {
       <div style={{ display:"flex",gap:8,alignItems:"center",flexWrap:"wrap" }}>
         <div style={{ display:"flex",gap:3,background:C.surface,borderRadius:9,padding:3,border:`1px solid ${C.border}`,flex:1,minWidth:isMobile?0:200 }}>
           {tabs.map(t=>(
-            <button key={t.id} onClick={()=>setVizTab(t.id)} style={{ flex:1,padding:"7px 4px",borderRadius:7,border:"none",background:vizTab===t.id?C.card:"transparent",color:vizTab===t.id?C.accentL:C.muted,fontFamily:"'JetBrains Mono',monospace",fontSize:isMobile?9:11,cursor:"pointer",fontWeight:vizTab===t.id?700:400,transition:"all .15s",whiteSpace:"nowrap" }}>
+            <button key={t.id} onClick={()=>setVizTab(t.id)} style={{ flex:1,padding:"7px 4px",borderRadius:7,border:"none",background:vizTab===t.id?C.card:"transparent",color:vizTab===t.id?C.accentL:C.text,fontFamily:"'JetBrains Mono',monospace",fontSize:isMobile?9:11,cursor:"pointer",fontWeight:vizTab===t.id?700:500,transition:"all .15s",whiteSpace:"nowrap",opacity:vizTab===t.id?1:0.75 }}>
               {t.label}
             </button>
           ))}
@@ -586,6 +588,7 @@ export default function App({ user: userProp, onDashboard }) {
         <div style={{ display: mode==="cheatsheet"  ? "block":"none" }}><CheatSheet /></div>
         <div style={{ display: mode==="graph"       ? "block":"none" }}><GraphTreeTab /></div>
         <div style={{ display: mode==="history"     ? "block":"none" }}><HistoryTab user={user} onLoad={handleHistoryLoad} /></div>
+        <div style={{ display: mode==="battle"      ? "block":"none" }}><BattleTab user={user} /></div>
         <div style={{ display: mode==="oopconcepts" ? "block":"none" }}><OOPConceptsTab /></div>
       </div>
 
