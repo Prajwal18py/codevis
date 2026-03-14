@@ -287,14 +287,8 @@ export default function App({ user: userProp, onDashboard }) {
 
 
   // ── Auth ──────────────────────────────────────────────────────────────────
-  useEffect(() => {
-    supabase.auth.getSession().then(({data:{session}})=>setUser(session?.user||null));
-    const {data:{subscription}}=supabase.auth.onAuthStateChange((_e,session)=>{
-      setUser(session?.user||null);
-      if (session?.user) setShowAuth(false);
-    });
-    return ()=>subscription.unsubscribe();
-  }, []);
+  // Auth is handled by Root.jsx — App just uses the user prop directly
+  // No listener here to avoid re-renders on token refresh
 
   function switchLang(l) {
     setLang(l); setLcCode(SAMPLES[l].lc); setOopCode(SAMPLES[l].oop); setResults({});

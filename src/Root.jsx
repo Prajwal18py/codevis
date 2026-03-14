@@ -24,15 +24,28 @@ export default function Root() {
   }, []);
 
   useEffect(() => {
+    // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user || null);
+      if (session?.user) setView("app");
       setLoading(false);
     });
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null);
-      // Only redirect on actual sign-in — not on TOKEN_REFRESHED or other events
-      if (event === "SIGNED_IN") setView(sharedData ? "app" : "dashboard");
-      if (event === "SIGNED_OUT") setView("dashboard");
+      // TOKEN_REFRESHED fires every hour — ignore it completely to avoid re-renders
+      if (event === "TOKEN_REFRESHED") return;
+      if (event === "SIGNED_IN") {
+        setUser(session?.user || null);
+        setView(sharedData ? "app" : "app");
+      }
+      if (event === "SIGNED_OUT") {
+        setUser(null);
+        setView("dashboard");
+      }
+      if (event === "USER_UPDATED") {
+        setUser(session?.user || null);
+        // Don't change view
+      }
     });
     return () => subscription.unsubscribe();
   }, []);
