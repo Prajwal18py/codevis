@@ -14,7 +14,8 @@ const TOPICS = [
   "Linked Lists","Binary Trees","Hash Maps","Recursion",
 ];
 
-function buildCheatPrompt(topic) {
+function buildCheatPrompt(topic, lang="cpp") {
+  const langLabel = lang === "python" ? "Python" : "C++";
   return `Create a concise cheat sheet for "${topic}" for a CS student.
 Return JSON only.
 
@@ -32,7 +33,7 @@ Return JSON only.
     "Step 2: description",
     "Step 3: description"
   ],
-  "code": "clean, minimal C++ implementation with short comments",
+  "code": "clean, minimal ${langLabel} implementation with short comments — plain text only, no HTML tags",
   "tips": [
     "Tip 1: practical tip",
     "Tip 2: common trap to avoid"
@@ -82,6 +83,7 @@ export default function CheatSheet() {
   const [sheet,     setSheet]     = useState(null);
   const [loading,   setLoading]   = useState(false);
   const [error,     setError]     = useState("");
+  const [lang,      setLang]      = useState("cpp");
   const [printing,  setPrinting]  = useState(false);
   const printRef = useRef(null);
 
@@ -89,7 +91,7 @@ export default function CheatSheet() {
     const t = custom.trim() || topic;
     setLoading(true); setSheet(null); setError("");
     try {
-      const res = await callGroq(buildCheatPrompt(t));
+      const res = await callGroq(buildCheatPrompt(t, lang));
       setSheet(res);
     } catch(e) {
       setError("Failed to generate — try again.");
@@ -210,6 +212,15 @@ export default function CheatSheet() {
             placeholder="Or type any topic... (Enter to generate)"
             style={{ flex: 1, background: C.card, border: `1px solid ${custom ? C.accentL + "50" : C.border}`, color: C.text, borderRadius: 8, padding: "7px 11px", fontFamily: "'JetBrains Mono',monospace", fontSize: 12, outline: "none", transition: "border-color .2s" }}
           />
+          {/* Lang toggle */}
+          <div style={{ display:"flex", gap:4, flexShrink:0 }}>
+            {[{id:"cpp",label:"⚙️ C++"},{id:"python",label:"🐍 Py"}].map(l=>(
+              <button key={l.id} onClick={()=>setLang(l.id)}
+                style={{ padding:"6px 10px", borderRadius:8, border:`1px solid ${lang===l.id?(l.id==="python"?C.green:C.accentL):C.border}`, background:lang===l.id?(l.id==="python"?C.green:C.accentL)+"18":"transparent", color:lang===l.id?(l.id==="python"?C.green:C.accentL):C.text, fontFamily:"'JetBrains Mono',monospace", fontSize:11, cursor:"pointer", fontWeight:lang===l.id?700:500, transition:"all .15s", opacity:lang===l.id?1:0.8 }}>
+                {l.label}
+              </button>
+            ))}
+          </div>
           <button onClick={generate} disabled={loading} style={{ padding: "7px 20px", borderRadius: 8, border: "none", background: loading ? C.accentL + "30" : `linear-gradient(135deg,${C.accent},${C.accentL})`, color: "#fff", fontFamily: "'Syne',sans-serif", fontSize: 13, fontWeight: 800, cursor: loading ? "not-allowed" : "pointer", whiteSpace: "nowrap", transition: "opacity .2s" }}>
             {loading ? "⟳ Generating..." : "📄 Generate"}
           </button>

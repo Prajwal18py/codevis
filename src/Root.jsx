@@ -27,7 +27,7 @@ export default function Root() {
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user || null);
-      if (session?.user) setView("app");
+      if (session?.user) setView("dashboard");
       setLoading(false);
     });
 
@@ -36,7 +36,7 @@ export default function Root() {
       if (event === "TOKEN_REFRESHED") return;
       if (event === "SIGNED_IN") {
         setUser(session?.user || null);
-        setView(sharedData ? "app" : "app");
+        setView(sharedData ? "app" : "dashboard");
       }
       if (event === "SIGNED_OUT") {
         setUser(null);
