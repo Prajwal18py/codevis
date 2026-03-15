@@ -1,30 +1,31 @@
 <div align="center">
 
-<!-- Animated banner using SVG -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=7c3aed&height=200&section=header&text=CODEVIS&fontSize=80&fontColor=ffffff&fontAlignY=35&desc=AI-Powered%20DSA%20%26%20OOP%20Learning%20Platform&descAlignY=60&descSize=18&animation=fadeIn" />
+```
+ ██████╗ ██████╗ ██████╗ ███████╗██╗   ██╗██╗███████╗
+██╔════╝██╔═══██╗██╔══██╗██╔════╝██║   ██║██║██╔════╝
+██║     ██║   ██║██║  ██║█████╗  ██║   ██║██║███████╗
+██║     ██║   ██║██║  ██║██╔══╝  ╚██╗ ██╔╝██║╚════██║
+╚██████╗╚██████╔╝██████╔╝███████╗ ╚████╔╝ ██║███████║
+ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝╚══════╝
+```
+
+<!-- Animated typing tagline -->
+<a href="https://codevis.vercel.app">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&pause=1000&color=F55036&center=true&vCenter=true&width=700&lines=Analyze+any+LeetCode+solution+with+AI+%F0%9F%A7%A0;Detect+12+OOP+concepts+automatically+%F0%9F%94%B7;Visualize+14%2B+algorithms+step+by+step+%F0%9F%93%8A;Battle+friends+in+real-time+coding+duels+%E2%9A%94%EF%B8%8F;AI-judged+%C2%B7+100+problems+%C2%B7+live+code+execution+%F0%9F%9A%80" alt="Typing SVG" />
+</a>
 
 <br/>
 
-<!-- Typing animation -->
-<a href="https://codevis.vercel.app">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&duration=3000&pause=1000&color=7C3AED&center=true&vCenter=true&multiline=true&repeat=true&width=700&height=60&lines=⚔️+Group+Battle+Mode+%7C+Up+to+10+Players;🤖+AI+Judges+Your+Code+%7C+Groq+LLaMA+3.3+70B;📊+Algorithm+Visualizer+%7C+Graph+%26+Tree+%7C+OOP" alt="Typing SVG" />
-</a>
-
-<br/><br/>
-
-<!-- Badges row 1 -->
 [![React](https://img.shields.io/badge/React_18-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite_5-646cff?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Groq](https://img.shields.io/badge/Groq-LLaMA_3.3_70B-f55036?style=for-the-badge&logoColor=white)](https://groq.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-3ecf8e?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 
-<!-- Badges row 2 -->
 [![C++](https://img.shields.io/badge/C%2B%2B_17-00599c?style=for-the-badge&logo=cplusplus&logoColor=white)](https://isocpp.org/)
 [![Python](https://img.shields.io/badge/Python-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://codevis.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-7c3aed?style=for-the-badge)](LICENSE)
 
-<!-- Stats badges -->
 [![GitHub stars](https://img.shields.io/github/stars/Prajwal18py/codevis?style=social)](https://github.com/Prajwal18py/codevis/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Prajwal18py/codevis?style=social)](https://github.com/Prajwal18py/codevis/network)
 
@@ -44,399 +45,412 @@
 
 </div>
 
----
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+## 🌟 What Makes CODEVIS Different?
+
+<div align="center">
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│   📚 Learn  →  🔍 Analyze  →  🎮 Practice  →  ⚔️ Battle  →  🏆 Win │
+│                                                                     │
+│        The complete CS learning loop — all in one platform          │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+</div>
+
+| | Other Tools | **CODEVIS** |
+|---|---|---|
+| AI code explanation | ✅ Basic | ✅ Deep walkthrough + analogies + dry run |
+| OOP Analysis | ❌ | ✅ 12 concepts auto-detected, SVG class diagram |
+| Algorithm Visualizer | ✅ Basic bars | ✅ 14+ algos, step nav, complexity charts, C++/Python |
+| Learn vs Practice | Separate tools | ✅ Same platform |
+| Compete with friends | ❌ | ✅ Live 1v1 battles, AI judge, 100 problems |
+| Code execution | ❌ | ✅ Real C++ / Python via Piston API |
+| Themes | 1 | ✅ 4 (Dark / Light / Dracula / Nord) |
+
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## 📸 Screenshots
-
-> Add your screenshots to a `screenshots/` folder in the root of the project.
-> Name them exactly as listed below so they show up correctly in this README.
-
-| Filename | What to screenshot |
-|---|---|
-| `screenshots/01_login.png` | The login / landing page |
-| `screenshots/02_dashboard.png` | Dashboard with stats, streak, quiz scores |
-| `screenshots/03_lc_tutor.png` | LeetCode tab after analyzing Two Sum |
-| `screenshots/04_oop_analyzer.png` | OOP tab with class diagram visible |
-| `screenshots/05_oop_concepts.png` | OOP Concepts tab showing C++ cards |
-| `screenshots/06_algo_visualizer.png` | Algorithm Visualizer mid-animation |
-| `screenshots/07_graph_tree.png` | Graph & Tree tab with BST built |
-| `screenshots/08_battle_lobby.png` | Battle lobby — Create Room, pick players + problem |
-| `screenshots/09_battle_arena.png` | Battle arena — players coding + timer + player pills |
-| `screenshots/10_quiz.png` | Quiz tab with a question showing |
-| `screenshots/11_cheatsheet.png` | Cheat Sheet output |
-| `screenshots/12_shared_view.png` | Shared analysis public view — no login needed |
-
-<br/>
 
 <div align="center">
 
 ### 🔐 Login Page
-<img src="screenshots/01_login.png" width="90%" alt="Login Page" />
-<br/><br/>
+<img src="src/screenshots/01_login.png" width="90%" alt="Login Page" />
+
+<br/>
 
 ### 📊 Dashboard
-<img src="screenshots/02_dashboard.png" width="90%" alt="Dashboard" />
-<br/><br/>
+<img src="src/screenshots/02_dashboard.png" width="90%" alt="Dashboard" />
+
+<br/>
 
 ### 🧩 LeetCode AI Tutor
-<img src="screenshots/03_lc_tutor.png" width="90%" alt="LeetCode Tutor" />
-<br/><br/>
+<img src="src/screenshots/03_lc_tutor.png" width="90%" alt="LeetCode Tutor" />
+
+<br/>
 
 ### 🔷 OOP Analyzer
-<img src="screenshots/04_oop_analyzer.png" width="90%" alt="OOP Analyzer" />
-<br/><br/>
+<img src="src/screenshots/04_oop_analyzer.png" width="90%" alt="OOP Analyzer" />
+
+<br/>
 
 ### 📖 OOP Concepts Reference
-<img src="screenshots/05_oop_concepts.png" width="90%" alt="OOP Concepts" />
-<br/><br/>
+<img src="src/screenshots/05_oop_concepts.png" width="90%" alt="OOP Concepts" />
+
+<br/>
 
 ### 📊 Algorithm Visualizer
-<img src="screenshots/06_algo_visualizer.png" width="90%" alt="Algorithm Visualizer" />
-<br/><br/>
+<img src="src/screenshots/06_algo_visualizer.png" width="90%" alt="Algorithm Visualizer" />
+
+<br/>
 
 ### 🌳 Graph & Tree Visualizer
-<img src="screenshots/07_graph_tree.png" width="90%" alt="Graph Tree" />
-<br/><br/>
+<img src="src/screenshots/07_graph_tree.png" width="90%" alt="Graph Tree" />
 
-### ⚔️ Group Battle Mode
-<img src="screenshots/08_battle_lobby.png" width="90%" alt="Battle Lobby" />
-<br/><br/>
+<br/>
 
-### ⚔️ Battle Arena
-<img src="screenshots/09_battle_arena.png" width="90%" alt="Battle Arena" />
-<br/><br/>
+### ⚔️ Group Battle Mode — Lobby
+<img src="src/screenshots/08_battle_lobby.png" width="90%" alt="Battle Lobby" />
+
+<br/>
+
+### ⚔️ Group Battle Mode — Arena
+<img src="src/screenshots/09_battle_arena.png" width="90%" alt="Battle Arena" />
+
+<br/>
 
 ### 🎯 AI Quiz
-<img src="screenshots/10_quiz.png" width="90%" alt="Quiz" />
-<br/><br/>
+<img src="src/screenshots/10_quiz.png" width="90%" alt="Quiz" />
+
+<br/>
 
 ### 📄 Cheat Sheet
-<img src="screenshots/11_cheatsheet.png" width="90%" alt="Cheat Sheet" />
-<br/><br/>
+<img src="src/screenshots/11_cheatsheet.png" width="90%" alt="Cheat Sheet" />
+
+<br/>
 
 ### 🔗 Shared Analysis View
-<img src="screenshots/12_shared_view.png" width="90%" alt="Shared Analysis" />
+<img src="src/screenshots/12_shared_view.png" width="90%" alt="Shared Analysis" />
 
 </div>
 
----
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
-## ✨ Features
+## ✨ Feature Deep Dives
 
-<table>
-<tr>
-<td width="50%">
+<br/>
 
 ### 🧩 LeetCode AI Tutor
-- Paste any problem + your solution
-- AI breaks it down **step by step**
-- Logic walkthrough with real analogies
-- Brute force vs Optimal approach
-- Visual dry run table
-- Time + Space complexity with charts
-- Common mistakes + edge cases
-- Export as **PDF revision sheet**
 
-</td>
-<td width="50%">
+> *Paste a problem. Get a full breakdown. Actually understand it.*
 
-### 🔷 OOP Analyzer (C++ / Python)
-- Paste any OOP code
-- Detects all **12 OOP concepts** automatically
-- Step-by-step object creation walkthrough
-- Memory state at every step
-- Deep dive analogies per concept
-- Interactive **SVG class diagram** — zoom/pan
-- OOP coverage progress ring %
-- Export as **PDF revision sheet**
+```
+Input:  Problem statement + your solution
+Output: Step-by-step logic  →  Dry run table  →  Complexity chart  →  PDF
+```
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+- 🔍 AI breaks down your approach with **real-world analogies**
+- ⚡ Brute force vs Optimal — side-by-side
+- 📊 Visual dry run table for any input
+- 🧮 Time + Space complexity with charts
+- 🚨 Common mistakes + tricky edge cases
+- 📥 Export as **PDF revision sheet** in one click
 
-### ⚔️ Group Battle Mode 🔥 STAR FEATURE
-- Create a room → get a **6-digit code**
-- Friend joins → battle starts instantly
-- **100 problems** — Easy / Medium / Hard
-- Creator picks difficulty + specific problem
-- Each player picks **their own language** (C++ or Python)
-- Timer: 5 / 10 / 15 minutes
-- Code **actually executes** via Piston API
-- **Groq AI judges** both solutions
-- Winner declared with score + verdict
-- Realtime sync via **Supabase Realtime** websockets
-
-</td>
-<td width="50%">
-
-### 📖 OOP Concepts Reference
-- All **12 core OOP concepts** explained
-- **C++ / Python toggle** — switch instantly
-- Expandable cards with real code examples
-- Exam tips per concept
-- Searchable by name or keyword
-- Covers: Classes, Encapsulation, Inheritance,
-  Polymorphism, Abstraction, Constructors,
-  Virtual Functions, Operator Overloading,
-  Templates, Friend, Static, Composition
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 📊 Algorithm Visualizer
-- 14+ algorithms — Sorting, Searching, Graph, DP
-- **C++ / Python toggle** on code view
-- Step-by-step **animated bar chart**
-- Progress ring + dot stepper
-- Keyboard navigation (← → keys)
-- Real world analogy per algorithm
-- Full complexity breakdown + pros/cons
-
-</td>
-<td width="50%">
-
-### 🌳 Graph & Tree Visualizer
-- **BST Mode** — build tree from any values
-- 4 traversals: BFS, In-order, Pre-order, Post-order
-- Animated node highlighting per step
-- **Graph Mode** — drag nodes, add/remove edges
-- BFS & DFS with step animation
-- Preset graphs: Sample Tree + Cycle Graph
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### ⚡ Playground
-- Type any custom array
-- Watch it sort in real time
-- Scrubable progress bar
-- Step badges (compare / swap / sorted)
-- Keyboard shortcuts
-- 8 algorithm choices
-
-</td>
-<td width="50%">
-
-### ⚔️ Algorithm Race (Compare)
-- Race **two algorithms** on the same array
-- Side-by-side animated bars
-- Live step counter per algorithm
-- Winner announcement with 🎉 confetti
-- Performance diff % shown
-- Random array generator
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🎯 AI Quiz
-- AI generates **5 MCQs** on any CS topic
-- Scores saved to Supabase + dashboard
-- Keyboard shortcuts (1–4 keys)
-- Animated option cards with instant feedback
-- Streak updated on every submit
-- 20+ preset topics to choose from
-
-</td>
-<td width="50%">
-
-### 📄 AI Cheat Sheet + PDF
-- Type any topic → AI generates full cheat sheet
-- Syntax-highlighted code blocks
-- One-click **print / save as PDF**
-- Clean print layout with CODEVIS branding
-- Complexity tables, key insights, mistakes
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🤖 AI Chat Bubble
-- Floating chat on **every tab**
-- Context-aware — knows your current mode
-- Multi-turn conversation (last 10 messages)
-- Quick suggestion buttons per mode
-- Unread message badge
-- Powered by Groq LLaMA 3.3 70B
-
-</td>
-<td width="50%">
-
-### 📊 Dashboard
-- Count-up animated stats
-- Quiz score sparkline chart
-- Language usage donut ring (C++ vs Python)
-- Streak tracking with milestone badges
-  🔥 STREAK · ⚡ HOT · 💎 PRO · 🏆 LEGEND
-- Daily CS tip carousel
-- Skeleton loaders
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🎨 4 Themes
-- 🌑 **Dark** — default sleek dark mode
-- ☀️ **Light** — clean light mode
-- 🧛 **Dracula** — purple vampire vibes
-- 🏔️ **Nord** — cool arctic blues
-- Persisted in localStorage
-
-</td>
-<td width="50%">
-
-### ⌨️ Monaco Editor + Smart Features
-- VS Code editor in every code input
-- Toggle button per editor
-- Syntax highlighting for C++ & Python
-- 🔗 **Shareable links** — share any analysis via URL
-- 📱 **Mobile responsive** layout
-- 📚 **History** — all analyses saved to Supabase
-
-</td>
-</tr>
-</table>
+<br/>
 
 ---
+
+### 🔷 OOP Analyzer *(C++ / Python)*
+
+> *Paste any OOP code. CODEVIS tells you exactly what's happening under the hood.*
+
+```
+Input:  C++ or Python OOP code
+Output: Concept detection  →  Object lifecycle  →  Memory trace  →  SVG diagram
+```
+
+- 🎯 Detects all **12 OOP concepts** automatically (no guessing)
+- 🪜 Step-by-step object creation walkthrough
+- 🧠 Memory state visualization at every step
+- 🗺️ Interactive **SVG class diagram** — zoom + pan
+- 📈 OOP coverage progress ring (%)
+- 📥 Export as **PDF revision sheet**
+
+<details>
+<summary>📋 All 12 OOP Concepts Detected</summary>
+
+| # | Concept | Detected In |
+|---|---|---|
+| 1 | Classes & Objects | C++ / Python |
+| 2 | Encapsulation | C++ / Python |
+| 3 | Inheritance | C++ / Python |
+| 4 | Polymorphism | C++ / Python |
+| 5 | Abstraction | C++ / Python |
+| 6 | Constructors & Destructors | C++ / Python |
+| 7 | Virtual Functions | C++ |
+| 8 | Operator Overloading | C++ / Python |
+| 9 | Templates / Generics | C++ / Python |
+| 10 | Friend Functions | C++ |
+| 11 | Static Members | C++ / Python |
+| 12 | Composition | C++ / Python |
+
+</details>
+
+<br/>
+
+---
+
+### ⚔️ Group Battle Mode *(Star Feature)*
+
+> *Code. Compete. Win. — Real-time 1v1 battles with AI judging.*
+
+```
+Create Room → Share 6-digit code → Friend joins → Battle starts → AI judges → Winner declared
+```
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│  👤 Player 1 │     │  🤖 Groq AI  │     │  👤 Player 2 │
+│  C++ / Py    │ ──► │    Judge     │ ◄── │  C++ / Py    │
+│  ⏱️ 5–15 min │     │  Both codes  │     │  ⏱️ 5–15 min │
+└──────────────┘     └──────┬───────┘     └──────────────┘
+                            │
+                     ┌──────▼───────┐
+                     │  🏆 Winner!  │
+                     │  Score shown │
+                     └──────────────┘
+```
+
+- 🎮 **100 curated problems** — 40 Easy · 39 Medium · 21 Hard
+- 🌐 **Up to 10 players** per room
+- 🔀 Each player picks **their own language** (C++ or Python)
+- ⏱️ Timer: 5 / 10 / 15 minutes
+- ✅ Code **actually executes** via Piston API
+- 🤖 **Groq AI judges** both solutions — not just test cases
+- 📡 Realtime sync via **Supabase Realtime** websockets
+
+<br/>
+
+---
+
+### 📊 Algorithm Visualizer
+
+> *Watch algorithms run. Step forward. Step back. Actually learn.*
+
+- 🎬 **14+ algorithms** — Sorting, Searching, Graph, DP
+- 🔄 **C++ / Python toggle** on code view — same algo, both languages
+- ▶️ Step-by-step **animated bar chart**
+- ⌨️ Keyboard navigation (`←` `→` arrow keys)
+- 📖 Real-world analogy per algorithm
+- 📊 Full complexity breakdown + pros/cons
+
+<details>
+<summary>📋 All Algorithms</summary>
+
+**Sorting:** Bubble · Selection · Insertion · Merge · Quick · Heap · Radix · Counting
+
+**Searching:** Binary Search · Linear Search
+
+**Graph:** BFS · DFS · Dijkstra · Bellman-Ford
+
+**DP:** Fibonacci · Knapsack
+
+</details>
+
+<br/>
+
+---
+
+### 🌳 Graph & Tree Visualizer
+
+- 🌲 **BST Mode** — insert values, watch the tree build
+- 🔄 4 traversals: BFS, In-order, Pre-order, Post-order — animated
+- 🖱️ **Graph Mode** — drag nodes, add/remove edges interactively
+- 🎯 BFS & DFS with per-step node highlighting
+- ⚡ Preset graphs: Sample Tree + Cycle Graph
+
+<br/>
+
+---
+
+### 🎯 AI Quiz + 📄 Cheat Sheet
+
+**Quiz:**
+- AI generates **5 fresh MCQs** on any CS topic, every time
+- Scores + streaks saved to dashboard
+- ⌨️ Keyboard shortcuts `1–4` for speed
+- 20+ preset topics (or type your own)
+
+**Cheat Sheet:**
+- Type any topic → AI generates a full revision sheet
+- Syntax-highlighted code blocks
+- One-click **print / save as PDF** with CODEVIS branding
+
+<br/>
+
+---
+
+### 🤖 Floating AI Chat
+
+> *Context-aware AI assistant — on every single tab.*
+
+- 💬 Knows what **mode you're currently in** — answers stay relevant
+- 🔁 Multi-turn conversation (last 10 messages retained)
+- ⚡ Quick suggestion buttons per mode
+- 🔴 Unread message badge
+- Powered by **Groq LLaMA 3.3 70B** — ~1s response
+
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## 🛠️ Tech Stack
 
 <div align="center">
 
-| Layer | Technology | Purpose |
+<!-- Animated skill icons -->
+<img src="https://skillicons.dev/icons?i=react,vite,js,cpp,python,supabase,vercel,postgres&theme=dark&perline=8" />
+
+<br/><br/>
+
+| Layer | Technology | Why |
 |---|---|---|
-| **Frontend** | React 18 + Vite 5 | UI framework |
-| **Styling** | CSS-in-JS + 4-theme system | Theming |
-| **AI Engine** | Groq API — LLaMA 3.3 70B | Code analysis + judging |
-| **Code Execution** | Piston API | Run C++ / Python in browser |
-| **Code Editor** | Monaco Editor (VS Code) | Code input |
-| **Auth** | Supabase Auth (Google + GitHub) | Authentication |
-| **Database** | Supabase PostgreSQL | History, scores, streaks |
-| **Realtime** | Supabase Realtime | 1v1 Battle websockets |
-| **C++ Backend** | C++ OOP + 12 concepts | Backend logic (OOP demo) |
-| **Deployment** | Vercel | Frontend hosting |
+| ⚛️ Frontend | **React 18 + Vite 5** | Blazing fast HMR + modern JSX |
+| 🎨 Styling | **CSS-in-JS + 4-theme system** | Dark / Light / Dracula / Nord |
+| 🤖 AI Engine | **Groq API — LLaMA 3.3 70B** | ~1–3s AI responses |
+| 💻 Code Execution | **Piston API** | Run C++ / Python in-browser |
+| ✏️ Code Editor | **Monaco Editor** | VS Code experience, in the browser |
+| 🔐 Auth | **Supabase Auth** | Google + GitHub OAuth |
+| 🗄️ Database | **Supabase PostgreSQL** | History, scores, streaks |
+| 📡 Realtime | **Supabase Realtime** | Battle Mode websockets |
+| 🚀 Deployment | **Vercel** | Zero-config CI/CD |
 
 </div>
 
----
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## 🗂️ Project Structure
 
 ```
 codevis/
 ├── .env                          # API keys — never commit!
-├── .env.example                  # Template
-├── .gitignore
+├── .env.example                  # Template for contributors
 ├── index.html
 ├── package.json
 ├── vite.config.js
-├── README.md
-├── supabase_schema.sql
+├── supabase_schema.sql           # Main DB schema
 ├── battle_schema.sql             # ⚔️ Battle Mode tables
-├── screenshots/                  # 📸 Add your screenshots here!
-│   ├── 01_login.png
-│   ├── 02_dashboard.png
-│   ├── 03_lc_tutor.png
-│   ├── 04_oop_analyzer.png
-│   ├── 05_oop_concepts.png
-│   ├── 06_algo_visualizer.png
-│   ├── 07_graph_tree.png
-│   ├── 08_battle_lobby.png
-│   ├── 09_battle_arena.png
-│   ├── 10_quiz.png
-│   ├── 11_cheatsheet.png
-│   └── 12_themes.png
+├── screenshots/                  # 📸 All 12 screenshots
+│
 ├── backend/
 │   └── codevis_backend.cpp       # C++ OOP backend (all 12 concepts)
+│
 └── src/
     ├── main.jsx                  # Entry point + ThemeProvider
     ├── Root.jsx                  # Auth router
-    ├── App.jsx                   # Main app — navbar + all state
+    ├── App.jsx                   # Main app shell + state
+    │
     ├── components/
-    │   ├── UI.jsx                # Shared components
+    │   ├── UI.jsx                # Shared reusable components
     │   ├── Editors.jsx           # Monaco editor toggle
     │   ├── AuthModal.jsx         # Login modal
     │   └── AIChat.jsx            # Floating AI chat bubble
+    │
     ├── pages/
-    │   ├── LoginPage.jsx         # Landing + login page
-    │   ├── Dashboard.jsx         # Stats + streaks + charts
-    │   └── SharedView.jsx        # Public shared analysis view
+    │   ├── LoginPage.jsx         # Landing + login
+    │   ├── Dashboard.jsx         # Stats, streaks, charts
+    │   └── SharedView.jsx        # Public shared analysis (no login)
+    │
     ├── tabs/
-    │   ├── LCTutorTab.jsx        # LeetCode AI tutor
-    │   ├── OOPTutorTab.jsx       # OOP walkthrough
+    │   ├── LCTutorTab.jsx        # LeetCode AI Tutor
+    │   ├── OOPTutorTab.jsx       # OOP code analyzer
     │   ├── OOPConceptsTab.jsx    # 12 OOP concepts reference
-    │   ├── ClassDiagram.jsx      # SVG class diagram
-    │   ├── ComplexityTab.jsx     # Complexity visuals
-    │   ├── OptimizeTab.jsx       # Code optimizer
+    │   ├── ClassDiagram.jsx      # Interactive SVG class diagram
     │   ├── AlgoTab.jsx           # Algorithm visualizer
     │   ├── Playground.jsx        # Custom sort playground
     │   ├── Comparison.jsx        # Algorithm race mode
-    │   ├── QuizTab.jsx           # AI MCQ quiz
-    │   ├── CheatSheet.jsx        # AI cheat sheet + PDF
-    │   ├── HistoryTab.jsx        # Supabase history
     │   ├── GraphTreeTab.jsx      # BST + Graph visualizer
     │   ├── BattleTab.jsx         # ⚔️ 1v1 Battle Mode
+    │   ├── QuizTab.jsx           # AI MCQ quiz
+    │   ├── CheatSheet.jsx        # AI cheat sheet + PDF
+    │   ├── HistoryTab.jsx        # Saved analyses
+    │   ├── ComplexityTab.jsx     # Complexity visuals
     │   ├── DryRun.jsx            # Dry run table
     │   └── LogicTab.jsx          # Logic steps
+    │
     └── utils/
-        ├── groq.js               # Groq API + prompt builders
+        ├── groq.js               # Groq API + all prompt builders
         ├── supabase.js           # Supabase client + helpers
-        ├── battle.js             # ⚔️ Battle room logic + 100 problems
-        ├── piston.js             # 🚀 Code execution API
-        ├── generatePDF.js        # PDF generation
+        ├── battle.js             # ⚔️ Battle logic + 100 problems
+        ├── piston.js             # Code execution API wrapper
+        ├── generatePDF.js        # PDF export
         ├── share.js              # Shareable link encode/decode
-        ├── theme.js              # Dark/Light/Dracula/Nord
+        ├── theme.js              # Theme definitions
         └── ThemeContext.jsx      # useTheme() hook
 ```
 
----
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## ⚙️ Installation
 
 ### Prerequisites
-- Node.js 18+
-- [Groq API key](https://console.groq.com/) — free
-- [Supabase](https://supabase.com/) project — free
 
-### 1. Clone
+- **Node.js 18+**
+- [Groq API key](https://console.groq.com/) — free tier available
+- [Supabase](https://supabase.com/) project — free tier available
+
+### Step 1 — Clone
+
 ```bash
 git clone https://github.com/Prajwal18py/codevis.git
 cd codevis
 ```
 
-### 2. Install
+### Step 2 — Install
+
 ```bash
 npm install
 ```
 
-### 3. Environment variables
+### Step 3 — Environment Variables
+
 ```bash
 cp .env.example .env
 ```
+
 ```env
 VITE_GROQ_API_KEY=your_groq_api_key_here
 VITE_SUPABASE_URL=https://yourproject.supabase.co
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 ```
 
-### 4. Supabase setup
-Run `supabase_schema.sql` then `battle_schema.sql` in your **Supabase SQL Editor**.
+### Step 4 — Supabase Setup
 
-### 5. Run
+In your **Supabase SQL Editor**, run these in order:
+
+```
+1. supabase_schema.sql   ← main tables
+2. battle_schema.sql     ← battle mode tables
+```
+
+### Step 5 — Run
+
 ```bash
 npm run dev
 # → http://localhost:5173
 ```
 
----
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## 🚀 Deploy to Vercel
 
@@ -446,76 +460,98 @@ git commit -m "🚀 CODEVIS v5"
 git push origin main
 ```
 
-1. [vercel.com](https://vercel.com) → **Add New Project** → Import `codevis`
-2. Add env vars: `VITE_GROQ_API_KEY`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
-3. **Deploy** ✅
-4. Supabase → Auth → Redirect URLs → add:
+1. Go to [vercel.com](https://vercel.com) → **Add New Project** → Import `codevis`
+2. Add your 3 environment variables
+3. Hit **Deploy** ✅
+4. In Supabase → **Auth → Redirect URLs**, add:
+
 ```
 https://codevis.vercel.app/**
 http://localhost:5173/**
 ```
 
----
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
-## 📊 App Stats
+## 📊 By The Numbers
 
 <div align="center">
 
 | Metric | Value |
 |---|---|
-| 🤖 **AI Modes** | 11 |
-| ⚔️ **Battle Problems** | 100 (40 Easy · 39 Medium · 21 Hard) |
-| 👥 **Max Battle Players** | 10 per room |
-| 📖 **OOP Concepts** | 12 (C++ + Python) |
-| 📊 **Algorithms** | 14+ |
-| 🎨 **Themes** | 4 (Dark / Light / Dracula / Nord) |
-| ⚛️ **React Components** | 25+ |
-| 🧠 **AI Model** | LLaMA 3.3 70B via Groq |
-| ⚡ **Avg AI Response** | ~1–3 seconds |
-| 🔐 **Auth Providers** | Google + GitHub |
-| 📡 **Realtime** | Supabase Websockets |
+| 🤖 AI Modes | **11** |
+| ⚔️ Battle Problems | **100** *(40 Easy · 39 Medium · 21 Hard)* |
+| 👥 Max Players per Room | **10** |
+| 📖 OOP Concepts Covered | **12** *(C++ + Python)* |
+| 📊 Algorithms Visualized | **14+** |
+| 🎨 Themes | **4** *(Dark / Light / Dracula / Nord)* |
+| ⚛️ React Components | **25+** |
+| 🧠 AI Model | **LLaMA 3.3 70B via Groq** |
+| ⚡ Avg AI Response Time | **~1–3 seconds** |
+| 🔐 Auth Providers | **Google + GitHub** |
+| 📡 Realtime Tech | **Supabase Websockets** |
 
 </div>
 
----
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
 ## 🗺️ Roadmap
+
+### ✅ Shipped
 
 - [x] 🧩 LeetCode AI Tutor
 - [x] 🔷 OOP Analyzer (C++ + Python)
 - [x] 📖 OOP Concepts Reference (12 concepts)
 - [x] 📊 Algorithm Visualizer (14+ algos)
 - [x] 🌳 Graph & Tree Visualizer
-- [x] ⚔️ 1v1 Battle Mode (100 problems, realtime, AI judge)
-- [x] 🤖 AI Chat Bubble
+- [x] ⚔️ Group Battle Mode (100 problems, realtime, AI judge)
+- [x] 🤖 Floating AI Chat (context-aware, multi-turn)
 - [x] 🔗 Shareable analysis links
-- [x] 📱 Mobile responsive
-- [x] 🎨 4 Themes (Dark/Light/Dracula/Nord)
-- [x] ⌨️ Monaco Editor
-- [x] 📊 Dashboard with streaks + charts
-- [x] ⚡ Piston live code execution
-- [ ] 🏆 Battle leaderboard
-- [ ] 🔍 Code similarity detector (ML)
-- [ ] 📈 Difficulty predictor (ML)
-- [ ] 🎯 Personalized recommender
-- [ ] 🌐 Java + JavaScript support
+- [x] 📱 Mobile responsive layout
+- [x] 🎨 4 Themes (Dark / Light / Dracula / Nord)
+- [x] ⌨️ Monaco Editor (VS Code in browser)
+- [x] 📊 Dashboard (streaks, sparklines, donut chart)
+- [x] ⚡ Piston live code execution (C++ + Python)
 
----
+### 🔜 Coming Soon
+
+- [ ] 🏆 Battle leaderboard (global rankings)
+- [ ] 🔍 Code similarity detector (ML-powered)
+- [ ] 📈 Difficulty predictor (ML model)
+- [ ] 🎯 Personalized problem recommender
+- [ ] 🌐 Java + JavaScript language support
+
+<!-- Animated divider -->
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+
+## 🤝 Contributing
+
+PRs welcome. If you find a bug or want a feature — open an issue first so we can discuss.
+
+```bash
+# Fork → Clone → Branch → Code → PR
+git checkout -b feature/your-feature-name
+```
 
 ## 📄 License
 
-MIT © [Prajwal A](https://github.com/Prajwal18py)
-
----
+MIT © [Prajwal A](https://github.com/Prajwal18py) — use it, fork it, build on it.
 
 <div align="center">
 
+<br/>
+
 **Built with 🔥 by [Prajwal A](https://github.com/Prajwal18py)**
 
-*If CODEVIS helped you — drop a ⭐ on GitHub!*
+*If CODEVIS helped you crack an interview, ace an exam, or beat your friend in battle — drop a ⭐*
 
 [![GitHub stars](https://img.shields.io/github/stars/Prajwal18py/codevis?style=social)](https://github.com/Prajwal18py/codevis)
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=7c3aed&height=120&section=footer&animation=fadeIn" />
+<br/>
+
+```
+          Learn smarter. Code faster. Battle harder.
+```
 
 </div>
