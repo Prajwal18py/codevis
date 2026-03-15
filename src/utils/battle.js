@@ -125,11 +125,11 @@ export function getRandomProblem(difficulty = null) {
 }
 
 // ── Create room ───────────────────────────────────────────────
-export async function createRoom({ userId, userName, timeLimit, maxPlayers, problemId }) {
+export async function createRoom({ userId, userName, timeLimit, maxPlayers, problemId, difficulty }) {
   const code    = generateRoomCode();
   const problem = problemId
-    ? BATTLE_PROBLEMS.find(p => p.id === problemId) || getRandomProblem()
-    : getRandomProblem();
+    ? BATTLE_PROBLEMS.find(p => p.id === problemId) || getRandomProblem(difficulty)
+    : getRandomProblem(difficulty);
 
   const { data, error } = await supabase.from("battle_rooms").insert({
     id:              code,

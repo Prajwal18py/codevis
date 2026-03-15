@@ -192,7 +192,7 @@ export default function BattleTab({ user }) {
   async function handleCreate(){
     setLoading(true); setError("");
     try{
-      const data=await createRoom({userId:user.id,userName,timeLimit,maxPlayers,problemId:selectedProb?.id});
+      const data=await createRoom({userId:user.id,userName,timeLimit,maxPlayers,problemId:selectedProb?.id,difficulty:diffFilter});
       setRoom(data);
       const{data:pl}=await supabase.from("battle_players").select("*").eq("room_id",data.id);
       setPlayers(pl||[]); setScreen("waiting"); setupRealtime(data.id);

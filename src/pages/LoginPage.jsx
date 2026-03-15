@@ -17,16 +17,25 @@ import { signInWithGoogle, signInWithGitHub } from "../utils/supabase";
 
 const CODE_SNIPPETS = [
   "vector<int> twoSum(vector<int>& nums, int target)",
+  "def two_sum(nums: list, target: int) -> list[int]:",
   "class Shape { virtual double area() = 0; };",
-  "def twoSum(self, nums, target) -> list[int]:",
+  "class Circle : public Shape { double r; };",
   "unordered_map<int,int> mp;",
-  "class Circle(Shape): def area(self):",
   "for(int i=0;i<n-1;i++) for(int j=0;j<n-i-1;j++)",
-  "if comp in seen: return [seen[comp], i]",
-  "O(n log n) — Merge Sort",
-  "dp[i][j] = dp[i-1][j] + dp[i][j-1]",
+  "if target - num in seen: return [seen[target-num], i]",
+  "dp[i] = max(dp[i-1] + nums[i], nums[i]);",
+  "dp[i][j] = dp[i-1][j] + dp[i][j-1];",
   "priority_queue<pair<int,int>> pq;",
-  "class Node { int val; Node* next; };",
+  "class Node { public: int val; Node* next; };",
+  "int mid = left + (right - left) / 2;",
+  "while(left <= right) { mid = (left+right)/2; }",
+  "stack<int> st; for(auto c : s) st.push(c);",
+  "return left == right ? nums[left] : merge(l,r);",
+  "template<typename T> class ResultCache {};",
+  "virtual ~Analyzer() {} // virtual destructor",
+  "graph[u].push_back(v); graph[v].push_back(u);",
+  "queue<int> q; q.push(src); visited[src]=true;",
+  "def dfs(node, visited): visited.add(node)",
 ];
 
 const TAGLINES = [
@@ -206,12 +215,12 @@ export default function LoginPage() {
       }} />
 
       {/* ── Glow blobs ── */}
-      <div style={{ position: "fixed", top: "12%", left: "50%", transform: "translateX(-50%)", width: 600, height: 600, background: C.accent + "09", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
-      <div style={{ position: "fixed", bottom: "8%", left: "10%", width: 320, height: 320, background: C.cyan + "07", borderRadius: "50%", filter: "blur(60px)", pointerEvents: "none" }} />
+      <div style={{ position: "fixed", top: "12%", left: "50%", transform: "translateX(-50%)", width: 600, height: 600, background: C.accent + "22", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
+      <div style={{ position: "fixed", bottom: "8%", left: "10%", width: 320, height: 320, background: C.cyan + "18", borderRadius: "50%", filter: "blur(60px)", pointerEvents: "none" }} />
 
       {/* ── Floating code snippets ── */}
       {CODE_SNIPPETS.map((s, i) => (
-        <div key={i} style={{ position: "fixed", fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: C.accentL + "16", whiteSpace: "nowrap", pointerEvents: "none", userSelect: "none", animation: `float ${4 + i * 0.35}s ease-in-out infinite`, animationDelay: `${i * 0.25}s`, opacity: snippetVis.includes(i) ? 1 : 0, transition: "opacity .8s ease", ...SNIPPET_POSITIONS[i % SNIPPET_POSITIONS.length] }}>
+        <div key={i} style={{ position: "fixed", fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: C.accentL + "45", whiteSpace: "nowrap", pointerEvents: "none", userSelect: "none", animation: `float ${4 + i * 0.35}s ease-in-out infinite`, animationDelay: `${i * 0.25}s`, opacity: snippetVis.includes(i) ? 1 : 0, transition: "opacity .8s ease", ...SNIPPET_POSITIONS[i % SNIPPET_POSITIONS.length] }}>
           {s}
         </div>
       ))}
@@ -260,9 +269,9 @@ export default function LoginPage() {
         <FadeIn delay={260}>
           <div className="login-stats" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
             {[
-              { icon: "🧠", value: "10+",    label: "Algo Types" },
-              { icon: "🌐", value: "C++/Py", label: "Languages"  },
-              { icon: "⚡", value: "Free",   label: "Forever"    },
+              { icon: "🤖", value: "AI",     label: "Powered"     },
+              { icon: "🌐", value: "C++/Py", label: "Languages"   },
+              { icon: "🌐", value: "OSS",    label: "Open Source" },
             ].map((s, i) => (
               <div key={i} style={{ textAlign: "center", padding: "12px 8px", background: C.card, border: `1px solid ${C.border}`, borderRadius: 12 }}>
                 <div style={{ fontSize: 20, marginBottom: 4 }}>{s.icon}</div>
@@ -278,8 +287,8 @@ export default function LoginPage() {
           <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 18, padding: "24px 24px", display: "flex", flexDirection: "column", gap: 12, boxShadow: `0 0 60px ${C.glow}, 0 4px 24px rgba(0,0,0,.18)`, backdropFilter: "blur(12px)" }}>
             <div style={{ textAlign: "center", marginBottom: 4 }}>
               <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 18, fontWeight: 800, color: C.text, marginBottom: 4 }}>Get Started — It's Free</div>
-              <div style={{ fontSize: 11, color: C.muted, fontFamily: "'JetBrains Mono',monospace", lineHeight: 1.9 }}>
-                Save analyses · track scores · build revision library
+              <div style={{ fontSize: 11, color: C.text, fontFamily: "'JetBrains Mono',monospace", lineHeight: 1.9, opacity: 0.85 }}>
+                ⚔️ Battle friends · 🌳 Visualize algos · 🎯 AI Quiz
               </div>
             </div>
 
@@ -322,13 +331,13 @@ export default function LoginPage() {
 
             {/* Enter hint */}
             {!loading && (
-              <div style={{ textAlign: "center", fontSize: 9, color: C.muted + "88", fontFamily: "'JetBrains Mono',monospace" }}>
+              <div style={{ textAlign: "center", fontSize: 9, color: C.text, fontFamily: "'JetBrains Mono',monospace", opacity: 0.8 }}>
                 Press <kbd style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 3, padding: "0 4px", fontSize: 9 }}>Enter</kbd> to continue with Google
               </div>
             )}
 
-            <div style={{ textAlign: "center", fontSize: 10, color: C.muted, fontFamily: "'JetBrains Mono',monospace", lineHeight: 1.8, borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
-              No credit card &nbsp;·&nbsp; No BS &nbsp;·&nbsp; Just DSA 🔥
+            <div style={{ textAlign: "center", fontSize: 10, color: C.text, fontFamily: "'JetBrains Mono',monospace", lineHeight: 1.8, borderTop: `1px solid ${C.border}`, paddingTop: 12, opacity: 0.85 }}>
+              Analyze &nbsp;·&nbsp; Visualize &nbsp;·&nbsp; Conquer ⚔️
             </div>
           </div>
         </FadeIn>
